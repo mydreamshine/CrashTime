@@ -12,6 +12,7 @@ public class MixLevels : MonoBehaviour
     public Text pausedText;
     public AudioMixerSnapshot paused;
     public AudioMixerSnapshot unpaused;
+    public AudioSource bgmAudioSource;
 
     void Update()
     {
@@ -25,13 +26,13 @@ public class MixLevels : MonoBehaviour
     public void Pause()
     {
         // 일시정지
-        Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+        //Time.timeScale = Time.timeScale == 0 ? 1 : 0;
         Lowpass();
     }
 
     public void Lowpass()
     {
-        if (Time.timeScale == 0)
+        if (pausedText.enabled)
         {
             paused.TransitionTo(0.01f);
         }
@@ -54,5 +55,11 @@ public class MixLevels : MonoBehaviour
     public void ClearVolume()
     {
         masterMixer.ClearFloat("bgmVol");
+    }
+
+    public void SetTimeScale(float value)
+    {
+        Time.timeScale = value;
+        bgmAudioSource.pitch = Time.timeScale;
     }
 }
