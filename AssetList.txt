@@ -1,0 +1,9 @@
+Enviroments
+https://assetstore.unity.com/packages/3d/environments/3d-scifi-kit-starter-kit-92152 (스테이지 1)
+https://assetstore.unity.com/packages/3d/environments/3d-free-modular-kit-85732 (스테이지 2)
+
+
+Character
+https://assetstore.unity.com/packages/3d/characters/humanoids/sci-fi/sci-fi-soldier-29559 (main)
+https://assetstore.unity.com/packages/3d/characters/humanoids/humans/3d-character-dummy-178395 (dummy test)
+https://assetstore.unity.com/packages/3d/characters/humanoids/humans/martial-arts-low-poly-free-models-pack-131893 (dummy test)

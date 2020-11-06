@@ -1,4 +1,7 @@
-﻿namespace DestroyObjectSolution.Scripts
+﻿using System;
+using System.Linq;
+
+namespace DestroyObjectSolution.Scripts
 {
     using UnityEngine;
     using System.Collections.Generic;
@@ -10,30 +13,90 @@
         private List<List<int>> _triangles = new List<List<int>>();
         private List<Vector2> _uvs = new List<Vector2>();
 
-        public Vector3[] Vertices;
-        public Vector3[] Normals;
-        public int[][] Triangles;
-        public Vector2[] UV;
+        public Vector3[] vertices;
+        public Vector3[] normals;
+        public int[][] triangles;
+        public Vector2[] uv;
         
         // Object Pool로 관리될 예정
-        public GameObject GameObject;
-        public Bounds Bounds;
+        public GameObject gameObject;
+        
+        public Bounds bounds;
+        
+        public Material[] materials;
+        public string meshName;
 
-        public PartMesh()
+        public PartMesh Initialize(MeshFilter originMeshFilter, MeshRenderer originMeshRenderer)
         {
+            var originMesh = originMeshFilter.mesh;
+            vertices = originMesh.vertices;
+            normals = originMesh.normals;
+            triangles = new int[originMesh.subMeshCount][];
+            for (var i = 0; i < originMesh.subMeshCount; i++)
+                triangles[i] = originMesh.GetTriangles(i);
+            uv = originMesh.uv;
             
+            originMesh.RecalculateBounds();
+            bounds = originMesh.bounds;
+
+            materials = originMeshRenderer.materials;
+            meshName = originMesh.name;
+
+            return this;
         }
         
-        public PartMesh(Mesh originMesh)
+        public PartMesh Initialize(SkinnedMeshRenderer originSkin, Transform originTransform)
         {
-            Vertices = originMesh.vertices;
-            Normals = originMesh.normals;
-            Triangles = new int[originMesh.subMeshCount][];
-            UV = originMesh.uv;
-            originMesh.RecalculateBounds();
-            Bounds = originMesh.bounds;
+            var originMesh = originSkin.sharedMesh;
+            CalculateAnimData(ref vertices,ref normals, originSkin, originTransform);
+            triangles = new int[originMesh.subMeshCount][];
             for (var i = 0; i < originMesh.subMeshCount; i++)
-                Triangles[i] = originMesh.GetTriangles(i);
+                triangles[i] = originMesh.GetTriangles(i);
+            uv = originMesh.uv;
+            
+            originMesh.RecalculateBounds();
+            bounds = originMesh.bounds;
+            
+            materials = originSkin.materials;
+            meshName = originMesh.name;
+
+            return this;
+        }
+
+        private static void CalculateAnimData(
+            ref Vector3[] destVertices, ref Vector3[] destNormals,
+            SkinnedMeshRenderer originSkin, Transform originTransform)
+        {
+            var originMesh = originSkin.sharedMesh;
+            destVertices = new Vector3[originMesh.vertexCount];
+            destNormals = new Vector3[originMesh.vertexCount];
+            
+            
+            var boneMatrices = new Matrix4x4[originSkin.bones.Length];
+
+            for (var i = 0; i < boneMatrices.Length; i++)
+            {
+                boneMatrices[i] = originTransform.worldToLocalMatrix * originSkin.bones[i].localToWorldMatrix *
+                                  originMesh.bindposes[i];
+            }
+
+            for (var v = 0; v < originMesh.vertexCount; v++)
+            {
+                var boneWeight = originMesh.boneWeights[v];
+                var animMatrix = new Matrix4x4();
+
+                for (var n = 0; n < 16; n++)
+                {
+                    animMatrix[n] = 
+                        boneMatrices[boneWeight.boneIndex0][n] * boneWeight.weight0 
+                        + boneMatrices[boneWeight.boneIndex1][n] * boneWeight.weight1
+                        + boneMatrices[boneWeight.boneIndex2][n] * boneWeight.weight2
+                        + boneMatrices[boneWeight.boneIndex3][n] * boneWeight.weight3;
+                }
+
+                destVertices[v] = animMatrix.MultiplyPoint3x4(originMesh.vertices[v]);
+                destNormals[v] = animMatrix.MultiplyVector(originMesh.normals[v]);
+            }
         }
 
         public void AddTriangle(
@@ -68,25 +131,25 @@
             }
             // Set Bound
             {
-                Bounds.min = Vector3.Min(Bounds.min, vertex1);
-                Bounds.min = Vector3.Min(Bounds.min, vertex2);
-                Bounds.min = Vector3.Min(Bounds.min, vertex3);
-                Bounds.max = Vector3.Max(Bounds.max, vertex1);
-                Bounds.max = Vector3.Max(Bounds.max, vertex2);
-                Bounds.max = Vector3.Max(Bounds.max, vertex3);
+                bounds.min = Vector3.Min(bounds.min, vertex1);
+                bounds.min = Vector3.Min(bounds.min, vertex2);
+                bounds.min = Vector3.Min(bounds.min, vertex3);
+                bounds.max = Vector3.Max(bounds.max, vertex1);
+                bounds.max = Vector3.Max(bounds.max, vertex2);
+                bounds.max = Vector3.Max(bounds.max, vertex3);
             }
         }
 
         public void FillArrays()
         {
-            Vertices = _vertices.ToArray();
-            Normals = _normals.ToArray();
-            UV = _uvs.ToArray();
-            Triangles = new int[_triangles.Count][];
+            vertices = _vertices.ToArray();
+            normals = _normals.ToArray();
+            uv = _uvs.ToArray();
+            triangles = new int[_triangles.Count][];
             for (var i = 0; i < _triangles.Count; i++)
-                Triangles[i] = _triangles[i].ToArray();
+                triangles[i] = _triangles[i].ToArray();
         }
-        
+
         /// <summary>
         /// Mesh Destroy 구성에 따라 오브젝트를 생성.
         /// Mesh Destroy 구성: MeshRenderer, MeshFilter, etc.
@@ -95,44 +158,44 @@
         public void MakeGameObject(MeshDestroy original)
         {
             // Object Pool로 관리될 예정
-            GameObject = new GameObject(original.name);
+            gameObject = new GameObject(original.name);
             var originTransform = original.transform;
-            GameObject.transform.position = originTransform.position;
-            GameObject.transform.rotation = originTransform.rotation;
-            GameObject.transform.localScale = originTransform.localScale;
+            gameObject.transform.position = originTransform.position;
+            gameObject.transform.rotation = originTransform.rotation;
+            gameObject.transform.localScale = originTransform.localScale;
             
             // Set Mesh
             {
                 var mesh = new Mesh
                 {
-                    name = original.GetComponent<MeshFilter>().mesh.name,
-                    vertices = Vertices,
-                    normals = Normals,
-                    uv = UV
+                    name = meshName,
+                    vertices = vertices,
+                    normals = normals,
+                    uv = uv
                 };
-                for (var i = 0; i < Triangles.Length; i++)
-                    mesh.SetTriangles(Triangles[i], i, true);
-                Bounds = mesh.bounds;
+                for (var i = 0; i < triangles.Length; i++)
+                    mesh.SetTriangles(triangles[i], i, true);
+                bounds = mesh.bounds;
 
-                var renderer = GameObject.AddComponent<MeshRenderer>();
-                renderer.materials = original.GetComponent<MeshRenderer>().materials;
+                var renderer = gameObject.AddComponent<MeshRenderer>();
+                renderer.materials = materials;
 
-                var filter = GameObject.AddComponent<MeshFilter>();
+                var filter = gameObject.AddComponent<MeshFilter>();
                 filter.mesh = mesh;
             }
             // Set collider
             {
-                var collider = GameObject.AddComponent<MeshCollider>();
+                var collider = gameObject.AddComponent<MeshCollider>();
                 collider.convex = true;
             }
             // Set rigidbody
             {
-                var rigidbody = GameObject.AddComponent<Rigidbody>();
+                var rigidbody = gameObject.AddComponent<Rigidbody>();
                 rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
             }
             // Set MeshDestroy
             {
-                var meshDestroy = GameObject.AddComponent<MeshDestroy>();
+                var meshDestroy = gameObject.AddComponent<MeshDestroy>();
                 meshDestroy.maxSlicing = original.maxSlicing;
                 meshDestroy.explodeForce = original.explodeForce;
             }
@@ -140,8 +203,8 @@
 
         public void AddForce(float scalar)
         {
-            var rigidBody = GameObject.GetComponent<Rigidbody>();
-            rigidBody.AddForceAtPosition(Bounds.center * scalar, GameObject.transform.position);
+            var rigidBody = gameObject.GetComponent<Rigidbody>();
+            rigidBody.AddForceAtPosition(bounds.center * scalar, gameObject.transform.position);
         }
     }
 
@@ -150,29 +213,29 @@
         [Range(1, 5)] public int maxSlicing = 3;
 
         [Range(1.0f, 2000.0f)] public float explodeForce = 1000.0f;
-        
-        private bool _slicingSectionGenerated;
-        private Vector3 _slicingPolygonPivotVertex;
-        private Vector2 _slicingSectionPivotUV;
-        private Plane _slicingSection;
+
+        private bool slicingSectionGenerated;
+        private Vector3 slicingPolygonPivotVertex;
+        private Vector2 slicingSectionPivotUV;
+        private Plane slicingSection;
         
         private void Update()
         {
             // _debug test
-            if (Input.GetMouseButtonDown(0)) DestroyMesh();
+            if (Input.GetMouseButtonDown(0)) DestroyMesh(Vector3.zero, Vector3.zero);
         }
 
-        public void DestroyMesh()
+        public void DestroyMesh(Vector3 impulse, Vector3 impulsePoint)
         {
-            var originPart = new PartMesh(GetComponent<MeshFilter>().mesh);
-            var newParts = new List<PartMesh> {originPart};
+            var originParts = ParsingPartMeshes();
+            var newParts = new List<PartMesh>(originParts);
             var subParts = new List<PartMesh>();
             for (var i = 0; i < maxSlicing; i++)
             {
                 foreach (var subPart in newParts)
                 {
                     // 랜덤한 방향의 평면(slicer) 생성
-                    var partBounds = subPart.Bounds;
+                    var partBounds = subPart.bounds;
                     // 평면(slicer)의 크기는 mesh보다 살짝 더 크게 해준다.
                     // Plane.Raycast()메소드에서
                     // mesh의 edge가  Plane의 가장자리에 위치할 때에는
@@ -213,18 +276,62 @@
             if(newParts.Count > 0) Destroy(gameObject);
         }
 
+        private IEnumerable<PartMesh> ParsingPartMeshes()
+        {
+            var originParts = new List<PartMesh>();
+            var originMeshObjects = new List<Transform>();
+
+            bool WhereCondition(Component t) 
+                => (t.gameObject.GetComponent<MeshFilter>() != null
+                    && t.gameObject.GetComponent<MeshRenderer>() != null)
+                   || t.gameObject.GetComponent<SkinnedMeshRenderer>() != null;
+
+            // if (WhereCondition(transform))
+            //     originMeshObjects.Add(transform);
+            // Linq.Enumerable.Where: child가 없을 경우 자기자신을 조건부로 검출한다.
+            var enuCollection = GetComponentsInChildren<Transform>().Where(WhereCondition);
+            originMeshObjects.AddRange(enuCollection);
+
+            foreach (var obj in originMeshObjects)
+            {
+                var meshFilter = obj.gameObject.GetComponent<MeshFilter>();
+                var meshRenderer = obj.gameObject.GetComponent<MeshRenderer>();
+
+                if (meshFilter != null || meshRenderer != null) 
+                    originParts.Add(new PartMesh().Initialize(meshFilter, meshRenderer));
+                else
+                {
+                    var skinnedMeshRenderer = obj.gameObject.GetComponent<SkinnedMeshRenderer>();
+                    if (skinnedMeshRenderer != null)
+                        originParts.Add(new PartMesh().Initialize(skinnedMeshRenderer, transform));
+                    else
+                    {
+                        if (meshFilter == null)
+                            throw new NullReferenceException(
+                                "Object does not has MeshFilter and MeshRenderer" +
+                                "(Or SkinnedMeshRenderer) component required to create PartMesh.");
+                    }
+                }
+            }
+            
+            return originParts;
+        }
+        
         private PartMesh GenerateMesh(PartMesh original, Plane slicer, bool isUpperOnPlane)
         {
             var partMesh = new PartMesh();
 
-            for (var i = 0; i < original.Triangles.Length; i++)
+            for (var i = 0; i < original.triangles.Length; i++)
             {
-                _slicingSectionGenerated = false;
-                for (var j = 0; j < original.Triangles[i].Length; j += 3)
+                slicingSectionGenerated = false;
+                for (var j = 0; j < original.triangles[i].Length; j += 3)
                     GenerateTriangle(i, j, original, partMesh, slicer, isUpperOnPlane);
             }
             
             partMesh.FillArrays();
+            partMesh.meshName = original.meshName;
+            partMesh.materials = original.materials;
+            
             return partMesh;
         }
 
@@ -245,14 +352,14 @@
             Plane slicer, bool isUpperOnPlane)
         {
             var index = triangle;
-            var triangles = original.Triangles[subMesh];
+            var triangles = original.triangles[subMesh];
             
             // 아래와 같이 Triangle의 Vertex가
             // 평면(slicer)의 어느 위치(위/아래)에 존재하는 가에 따라
             // 잘려나가는 Triangle의 Pivot Vertex(index)를 결정한다.
-            var includePointA = slicer.GetSide(original.Vertices[triangles[index]]) == isUpperOnPlane;
-            var includePointB = slicer.GetSide(original.Vertices[triangles[index + 1]]) == isUpperOnPlane;
-            var includePointC = slicer.GetSide(original.Vertices[triangles[index + 2]]) == isUpperOnPlane;
+            var includePointA = slicer.GetSide(original.vertices[triangles[index]]) == isUpperOnPlane;
+            var includePointB = slicer.GetSide(original.vertices[triangles[index + 1]]) == isUpperOnPlane;
+            var includePointC = slicer.GetSide(original.vertices[triangles[index + 2]]) == isUpperOnPlane;
 
             var includeOriginVertexCount = (includePointA ? 1 : 0)
                                              + (includePointB ? 1 : 0)
@@ -266,26 +373,26 @@
             if (includeOriginVertexCount == 3)
             {
                 partMesh.AddTriangle(subMesh,
-                    original.Vertices[triangles[index]], original.Vertices[triangles[index + 1]], original.Vertices[triangles[index + 2]],
-                    original.Normals[triangles[index]], original.Normals[triangles[index + 1]], original.Normals[triangles[index + 2]],
-                    original.UV[triangles[index]], original.UV[triangles[index + 1]], original.UV[triangles[index + 2]]);
+                    original.vertices[triangles[index]], original.vertices[triangles[index + 1]], original.vertices[triangles[index + 2]],
+                    original.normals[triangles[index]], original.normals[triangles[index + 1]], original.normals[triangles[index + 2]],
+                    original.uv[triangles[index]], original.uv[triangles[index + 1]], original.uv[triangles[index + 2]]);
                 //Debug.Log($"includeOriginVertexCount:{includeOriginVertexCount}");
                 return;
             }
 
             var offsetIndex = includePointB == includePointC ? 0 : (includePointA == includePointC ? 1 : 2);
 
-            var pivotPoint = original.Vertices[triangles[index + offsetIndex]];
-            var point1 = original.Vertices[triangles[index + ((offsetIndex + 1) % 3)]];
-            var point2 = original.Vertices[triangles[index + ((offsetIndex + 2) % 3)]];
+            var pivotPoint = original.vertices[triangles[index + offsetIndex]];
+            var point1 = original.vertices[triangles[index + ((offsetIndex + 1) % 3)]];
+            var point2 = original.vertices[triangles[index + ((offsetIndex + 2) % 3)]];
             
-            var pivotNormal = original.Normals[triangles[index + offsetIndex]];
-            var normal1 = original.Normals[triangles[index + ((offsetIndex + 1) % 3)]];
-            var normal2 = original.Normals[triangles[index + ((offsetIndex + 2) % 3)]];
+            var pivotNormal = original.normals[triangles[index + offsetIndex]];
+            var normal1 = original.normals[triangles[index + ((offsetIndex + 1) % 3)]];
+            var normal2 = original.normals[triangles[index + ((offsetIndex + 2) % 3)]];
 
-            var pivotUV = original.UV[triangles[index + offsetIndex]];
-            var uv1 = original.UV[triangles[index + ((offsetIndex + 1) % 3)]];
-            var uv2 = original.UV[triangles[index + ((offsetIndex + 2) % 3)]];
+            var pivotUV = original.uv[triangles[index + offsetIndex]];
+            var uv1 = original.uv[triangles[index + ((offsetIndex + 1) % 3)]];
+            var uv2 = original.uv[triangles[index + ((offsetIndex + 2) % 3)]];
             
             var edge1 = new Ray(pivotPoint, point1 - pivotPoint);
             var edge2 = new Ray(pivotPoint, point2 - pivotPoint);
@@ -363,27 +470,27 @@
             Vector3 vertex1, Vector3 vertex2,
             Vector2 uv1, Vector2 uv2)
         {
-            if (!_slicingSectionGenerated)
+            if (!slicingSectionGenerated)
             {
-                _slicingSectionGenerated = true;
-                _slicingPolygonPivotVertex = vertex1;
-                _slicingSectionPivotUV = uv1;
+                slicingSectionGenerated = true;
+                slicingPolygonPivotVertex = vertex1;
+                slicingSectionPivotUV = uv1;
             }
             else
             {
-                _slicingSection.Set3Points(_slicingPolygonPivotVertex, vertex1, vertex2);
+                slicingSection.Set3Points(slicingPolygonPivotVertex, vertex1, vertex2);
                 
                 // 잘린 단면의 Normal에 따라 vertex 순서를 변경한다.
-                var clockWise = _slicingSection.GetSide(_slicingPolygonPivotVertex + normal);
+                var clockWise = slicingSection.GetSide(slicingPolygonPivotVertex + normal);
 
                 partMesh.AddTriangle(subMesh,
-                    _slicingPolygonPivotVertex,
+                    slicingPolygonPivotVertex,
                     clockWise ? vertex1 : vertex2,
                     clockWise ? vertex2 : vertex1,
                     normal,
                     normal,
                     normal,
-                    _slicingSectionPivotUV,
+                    slicingSectionPivotUV,
                     uv1,
                     uv2);
             }
