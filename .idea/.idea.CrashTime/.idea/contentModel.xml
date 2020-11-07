@@ -6,6 +6,13 @@
     <e p="C:\Users\CHS\Desktop\ChoHeeseok\전공\게임엔진2\TermProject\CrashTime" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Scenes" t="Include">
+          <e p="SoundTest" t="Include">
+            <e p="PlayerCameraController.cs" t="Include" />
+            <e p="PlayerInputAction.cs" t="Include" />
+            <e p="PlayerMoveController.cs" t="Include" />
+          </e>
+        </e>
         <e p="Sounds" t="Include">
           <e p="MixLevels.cs" t="Include" />
         </e>

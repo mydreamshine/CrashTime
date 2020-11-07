@@ -16,7 +16,7 @@ public class MixLevels : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             pausedText.enabled = !pausedText.enabled;
             Pause();
@@ -34,10 +34,14 @@ public class MixLevels : MonoBehaviour
     {
         if (pausedText.enabled)
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             paused.TransitionTo(0.01f);
         }
         else
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
             unpaused.TransitionTo(0.01f);
         }
     }
