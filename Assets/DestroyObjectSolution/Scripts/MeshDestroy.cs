@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using UnityEngine.Rendering;
 
 namespace DestroyObjectSolution.Scripts
 {
@@ -35,7 +36,7 @@ namespace DestroyObjectSolution.Scripts
             for (var i = 0; i < originMesh.subMeshCount; i++)
                 triangles[i] = originMesh.GetTriangles(i);
             uv = originMesh.uv;
-            
+
             originMesh.RecalculateBounds();
             bounds = originMesh.bounds;
 
@@ -80,11 +81,15 @@ namespace DestroyObjectSolution.Scripts
                                   originMesh.bindposes[i];
             }
 
+            // System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+            // sw.Start();
+            
+            var animMatrix = new Matrix4x4();
             for (var v = 0; v < originMesh.vertexCount; v++)
             {
                 var boneWeight = originMesh.boneWeights[v];
-                var animMatrix = new Matrix4x4();
 
+                // Matrix 연산 비용이 너무 크다...
                 for (var n = 0; n < 16; n++)
                 {
                     animMatrix[n] = 
@@ -97,15 +102,19 @@ namespace DestroyObjectSolution.Scripts
                 destVertices[v] = animMatrix.MultiplyPoint3x4(originMesh.vertices[v]);
                 destNormals[v] = animMatrix.MultiplyVector(originMesh.normals[v]);
             }
+            
+            // sw.Stop();
+            // Debug.Log("Time taken to calculate AnimVertices: " + sw.ElapsedMilliseconds.ToString() + "ms");
         }
 
         public void AddTriangle(
             int subMesh,
             Vector3 vertex1, Vector3 vertex2, Vector3 vertex3,
             Vector3 normal1, Vector3 normal2, Vector3 normal3,
-            Vector2 uv1, Vector2 uv2, Vector2 uv3)
+            Vector2 uv1, Vector2 uv2, Vector2 uv3,
+            bool existUVs)
         {
-            if (_triangles.Count - 1 < subMesh)
+            while (_triangles.Count - 1 < subMesh)
                 _triangles.Add(new List<int>());
 
             // Add Vertices
@@ -124,6 +133,7 @@ namespace DestroyObjectSolution.Scripts
                 _normals.Add(normal3);
             }
             // Add UVs
+            if (existUVs)
             {
                 _uvs.Add(uv1);
                 _uvs.Add(uv2);
@@ -173,8 +183,13 @@ namespace DestroyObjectSolution.Scripts
                     normals = normals,
                     uv = uv
                 };
+                
                 for (var i = 0; i < triangles.Length; i++)
+                {
                     mesh.SetTriangles(triangles[i], i, true);
+                    mesh.subMeshCount = triangles.Length;
+                }
+                mesh.RecalculateBounds();
                 bounds = mesh.bounds;
 
                 var renderer = gameObject.AddComponent<MeshRenderer>();
@@ -256,10 +271,18 @@ namespace DestroyObjectSolution.Scripts
                     //  잘려나가는 Part(slicedMesh)의 개수를 가늠하기가 어렵다...)
                     var slicedPart1 = GenerateMesh(subPart, slicer, true);
                     var slicedPart2 = GenerateMesh(subPart, slicer, false);
-                    
-                    if (slicedPart1 == null || slicedPart2 == null) continue;
-                    subParts.Add(slicedPart1);
-                    subParts.Add(slicedPart2);
+
+                    if (slicedPart1 != null)
+                    {
+                        if (slicedPart1.vertices.Length > 0) 
+                            subParts.Add(slicedPart1);
+                    }
+
+                    if (slicedPart2 != null)
+                    {
+                        if (slicedPart2.vertices.Length > 0)
+                            subParts.Add(slicedPart2);
+                    }
                 }
                 
                 newParts = new List<PartMesh>(subParts);
@@ -335,6 +358,28 @@ namespace DestroyObjectSolution.Scripts
             return partMesh;
         }
 
+        private bool CheckAndSetUVs(ref Vector2[] destUVs, Vector2[] originUVs, int[] uvIndices)
+        {
+            var existUVs = true;
+            if (originUVs != null)
+            {
+                if (originUVs.Length > 0)
+                    destUVs = new [] {originUVs[uvIndices[0]], originUVs[uvIndices[1]], originUVs[uvIndices[2]]};
+                else
+                {
+                    destUVs = new [] {Vector2.zero, Vector2.zero, Vector2.zero};
+                    existUVs = false;
+                }
+            }
+            else
+            {
+                destUVs = new [] {Vector2.zero, Vector2.zero, Vector2.zero};
+                existUVs = false;
+            }
+
+            return existUVs;
+        }
+
         /// <summary>
         /// 평면(Slicer)과 현재 Triangle의 Edge들과의 교차 판정을 통해
         /// 교점이 2개 이상이면
@@ -370,12 +415,23 @@ namespace DestroyObjectSolution.Scripts
                 return;
             }
 
+            Vector2[] indexingUVs;
+            int[] originUVIndices;
+            bool existUVs;
             if (includeOriginVertexCount == 3)
             {
+                indexingUVs = null;
+                originUVIndices = new[] {triangles[index], triangles[index + 1], triangles[index + 2]};
+                existUVs = CheckAndSetUVs(ref indexingUVs, original.uv, originUVIndices);
+                
                 partMesh.AddTriangle(subMesh,
-                    original.vertices[triangles[index]], original.vertices[triangles[index + 1]], original.vertices[triangles[index + 2]],
-                    original.normals[triangles[index]], original.normals[triangles[index + 1]], original.normals[triangles[index + 2]],
-                    original.uv[triangles[index]], original.uv[triangles[index + 1]], original.uv[triangles[index + 2]]);
+                    original.vertices[triangles[index]], original.vertices[triangles[index + 1]],
+                    original.vertices[triangles[index + 2]],
+                    original.normals[triangles[index]], original.normals[triangles[index + 1]],
+                    original.normals[triangles[index + 2]],
+                    indexingUVs[0], indexingUVs[1], indexingUVs[2],
+                    existUVs: existUVs);
+
                 //Debug.Log($"includeOriginVertexCount:{includeOriginVertexCount}");
                 return;
             }
@@ -390,9 +446,17 @@ namespace DestroyObjectSolution.Scripts
             var normal1 = original.normals[triangles[index + ((offsetIndex + 1) % 3)]];
             var normal2 = original.normals[triangles[index + ((offsetIndex + 2) % 3)]];
 
-            var pivotUV = original.uv[triangles[index + offsetIndex]];
-            var uv1 = original.uv[triangles[index + ((offsetIndex + 1) % 3)]];
-            var uv2 = original.uv[triangles[index + ((offsetIndex + 2) % 3)]];
+            indexingUVs = null;
+            originUVIndices = new[]
+            {
+                triangles[index + offsetIndex],
+                triangles[index + ((offsetIndex + 1) % 3)],
+                triangles[index + ((offsetIndex + 2) % 3)]
+            };
+            existUVs = CheckAndSetUVs(ref indexingUVs, original.uv, originUVIndices);
+            var pivotUV = indexingUVs[0];
+            var uv1 = indexingUVs[1];
+            var uv2 = indexingUVs[2];
             
             var edge1 = new Ray(pivotPoint, point1 - pivotPoint);
             var edge2 = new Ray(pivotPoint, point2 - pivotPoint);
@@ -426,7 +490,8 @@ namespace DestroyObjectSolution.Scripts
                     interPoint1,
                     interPoint2,
                     interUV1,
-                    interUV2);
+                    interUV2,
+                    existUVs);
                 
                 // includeOriginVertexCount가 2일 경우 해당 SlicedTriangle의 모양은 사각형이기에
                 // Triangle 2개로 구분하여 삼각형 모양을 유지해 준다.
@@ -435,11 +500,13 @@ namespace DestroyObjectSolution.Scripts
                     partMesh.AddTriangle(subMesh,
                         interPoint1, point1, point2,
                         interNormal1, normal1, normal2,
-                        interUV1, uv1, uv2);
+                        interUV1, uv1, uv2,
+                        existUVs);
                     partMesh.AddTriangle(subMesh,
                         interPoint1, point2, interPoint2,
                         interNormal1, normal2: normal2, interNormal2,
-                        interUV1, uv2: uv2, interUV2);
+                        interUV1, uv2: uv2, interUV2,
+                        existUVs);
                     //Debug.Log($"includeOriginVertexCount:{includeOriginVertexCount}");
                 }
                 else
@@ -447,7 +514,8 @@ namespace DestroyObjectSolution.Scripts
                     partMesh.AddTriangle(subMesh,
                         pivotPoint, interPoint1, interPoint2,
                         pivotNormal, interNormal1, interNormal2,
-                        pivotUV, interUV1, interUV2);
+                        pivotUV, interUV1, interUV2,
+                        existUVs);
                     //Debug.Log($"includeOriginVertexCount:{includeOriginVertexCount}");
                 }
             }
@@ -464,11 +532,13 @@ namespace DestroyObjectSolution.Scripts
         /// <param name="vertex2"></param>
         /// <param name="uv1"></param>
         /// <param name="uv2"></param>
+        /// <param name="existUVs"></param>
         private void AddSlicingSection(int subMesh,
             PartMesh partMesh,
             Vector3 normal,
             Vector3 vertex1, Vector3 vertex2,
-            Vector2 uv1, Vector2 uv2)
+            Vector2 uv1, Vector2 uv2,
+            bool existUVs)
         {
             if (!slicingSectionGenerated)
             {
@@ -492,7 +562,8 @@ namespace DestroyObjectSolution.Scripts
                     normal,
                     slicingSectionPivotUV,
                     uv1,
-                    uv2);
+                    uv2,
+                    existUVs);
             }
         }
     }
