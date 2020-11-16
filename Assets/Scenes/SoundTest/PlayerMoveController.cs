@@ -12,7 +12,7 @@ public class PlayerMoveController : MonoBehaviour, PlayerInputAction.IFpsActions
     [SerializeField] private float characterMoveSpeed = 10.0f;
 
     [SerializeField] private AudioSource walkSound;
-    
+
     void Awake()
     {
         _characterController = GetComponent<CharacterController>();
@@ -33,6 +33,8 @@ public class PlayerMoveController : MonoBehaviour, PlayerInputAction.IFpsActions
             walkSound.pitch = Random.Range(0.8f, 1.1f);
             walkSound.Play();
         }
+        
+
     }
 
     void OnEnable()

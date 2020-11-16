@@ -96,6 +96,14 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""140084ad-e65f-4674-8a56-6264b4d5b876"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -107,6 +115,17 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d37f9cb5-b090-404d-b671-7ffa03a55809"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -121,6 +140,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
         // FpsCamera
         m_FpsCamera = asset.FindActionMap("FpsCamera", throwIfNotFound: true);
         m_FpsCamera_Aim = m_FpsCamera.FindAction("Aim", throwIfNotFound: true);
+        m_FpsCamera_Shoot = m_FpsCamera.FindAction("Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -204,11 +224,13 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
     private readonly InputActionMap m_FpsCamera;
     private IFpsCameraActions m_FpsCameraActionsCallbackInterface;
     private readonly InputAction m_FpsCamera_Aim;
+    private readonly InputAction m_FpsCamera_Shoot;
     public struct FpsCameraActions
     {
         private @PlayerInputAction m_Wrapper;
         public FpsCameraActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
         public InputAction @Aim => m_Wrapper.m_FpsCamera_Aim;
+        public InputAction @Shoot => m_Wrapper.m_FpsCamera_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_FpsCamera; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -221,6 +243,9 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                 @Aim.started -= m_Wrapper.m_FpsCameraActionsCallbackInterface.OnAim;
                 @Aim.performed -= m_Wrapper.m_FpsCameraActionsCallbackInterface.OnAim;
                 @Aim.canceled -= m_Wrapper.m_FpsCameraActionsCallbackInterface.OnAim;
+                @Shoot.started -= m_Wrapper.m_FpsCameraActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_FpsCameraActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_FpsCameraActionsCallbackInterface.OnShoot;
             }
             m_Wrapper.m_FpsCameraActionsCallbackInterface = instance;
             if (instance != null)
@@ -228,6 +253,9 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                 @Aim.started += instance.OnAim;
                 @Aim.performed += instance.OnAim;
                 @Aim.canceled += instance.OnAim;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
             }
         }
     }
@@ -239,5 +267,6 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
     public interface IFpsCameraActions
     {
         void OnAim(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
 }

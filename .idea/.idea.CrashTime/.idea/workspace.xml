@@ -23,13 +23,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SoundTestScene.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SoundTestScene.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerCameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerCameraController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerInputAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerInputAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerInputAction.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerInputAction.inputactions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerMoveController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerMoveController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SoundTest/SoundTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SoundTest/SoundTestScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Sounds/AudioMixer.mixer" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sounds/AudioMixer.mixer" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sounds/MixLevels.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sounds/MixLevels.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,9 +46,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerInputAction.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerCameraController.cs" />
         <option value="$PROJECT_DIR$/Assets/Sounds/MixLevels.cs" />
         <option value="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerMoveController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerCameraController.cs" />
       </list>
     </option>
   </component>
@@ -105,6 +104,9 @@
       <workItem from="1604650979405" duration="191000" />
       <workItem from="1604651209763" duration="1141000" />
       <workItem from="1604724895031" duration="3309000" />
+      <workItem from="1604902920130" duration="222000" />
+      <workItem from="1604985332234" duration="1202000" />
+      <workItem from="1605541029025" duration="1176000" />
     </task>
     <servers />
   </component>
