@@ -4,13 +4,165 @@
     <e p="C:\Users\CHS\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
     <e p="C:\Users\CHS\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_CrashTime.2111136355.00" t="ExcludeRecursive" />
     <e p="E:\ChoHeeseok\전공\게임엔진2\TermProject\CrashTime" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Functions" t="Include">
+          <e p="DestroyObjectSolution" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="MeshDestroy.cs" t="Include" />
+            </e>
+          </e>
+          <e p="KPU" t="Include">
+            <e p="Controllers" t="Include">
+              <e p="SpawnController.cs" t="Include" />
+            </e>
+            <e p="KPU.asmdef" t="Include" />
+            <e p="Manager" t="Include">
+              <e p="EventManager.cs" t="Include" />
+              <e p="GameManager.cs" t="Include" />
+              <e p="GameScoreManager.cs" t="Include" />
+              <e p="ObjectPoolManager.cs" t="Include" />
+              <e p="SpawnManager.cs" t="Include" />
+            </e>
+            <e p="SingletonBehaviour.cs" t="Include" />
+            <e p="State.cs" t="Include" />
+            <e p="Time" t="Include">
+              <e p="IInputRecordable.cs" t="Include" />
+              <e p="InputRecord.cs" t="Include" />
+              <e p="InputRecordableGameObject.cs" t="Include" />
+              <e p="IRewindable.cs" t="Include" />
+              <e p="RewindableGameObject.cs" t="Include" />
+              <e p="RewindRecord.cs" t="Include" />
+              <e p="TimeManager.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Libraries" t="Include">
+            <e p="AssetStoreLibraries" t="Include">
+              <e p="GifToolkit" t="Include">
+                <e p="Core" t="Include">
+                  <e p="GifToolkitCore.cs" t="Include" />
+                  <e p="GifToolkitDataModel.cs" t="Include" />
+                </e>
+                <e p="Handler" t="Include">
+                  <e p="Example" t="Include">
+                    <e p="GifToolkitExampleScene.cs" t="Include" />
+                  </e>
+                  <e p="Scripts" t="Include">
+                    <e p="Editor" t="Include">
+                      <e p="GifSearcherEditor.cs" t="Include" />
+                    </e>
+                    <e p="GifHelperClasses.cs" t="Include" />
+                    <e p="GifSearcher.cs" t="Include" />
+                    <e p="SimpleBinaryStreamer.cs" t="Include" />
+                  </e>
+                </e>
+                <e p="Notices.txt" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="TextMesh Pro" t="Include">
+            <e p="Fonts" t="Include">
+              <e p="LiberationSans - OFL.txt" t="Include" />
+            </e>
+            <e p="Resources" t="Include">
+              <e p="LineBreaking Following Characters.txt" t="Include" />
+              <e p="LineBreaking Leading Characters.txt" t="Include" />
+            </e>
+            <e p="Shaders" t="Include">
+              <e p="TMP_Bitmap-Custom-Atlas.shader" t="Include" />
+              <e p="TMP_Bitmap-Mobile.shader" t="Include" />
+              <e p="TMP_Bitmap.shader" t="Include" />
+              <e p="TMP_SDF Overlay.shader" t="Include" />
+              <e p="TMP_SDF SSD.shader" t="Include" />
+              <e p="TMP_SDF-Mobile Masking.shader" t="Include" />
+              <e p="TMP_SDF-Mobile Overlay.shader" t="Include" />
+              <e p="TMP_SDF-Mobile SSD.shader" t="Include" />
+              <e p="TMP_SDF-Mobile.shader" t="Include" />
+              <e p="TMP_SDF-Surface-Mobile.shader" t="Include" />
+              <e p="TMP_SDF-Surface.shader" t="Include" />
+              <e p="TMP_SDF.shader" t="Include" />
+              <e p="TMP_Sprite.shader" t="Include" />
+              <e p="TMPro.cginc" t="Include" />
+              <e p="TMPro_Mobile.cginc" t="Include" />
+              <e p="TMPro_Properties.cginc" t="Include" />
+              <e p="TMPro_Surface.cginc" t="Include" />
+            </e>
+            <e p="Sprites" t="Include">
+              <e p="EmojiOne Attribution.txt" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Resources" t="Include">
+          <e p="AssetStoreResources" t="Include">
+            <e p="Maps" t="Include">
+              <e p="_Barking_Dog" t="Include">
+                <e p="Common Scripts" t="Include">
+                  <e p="MouseLook.cs" t="Include" />
+                  <e p="Turn_Move.cs" t="Include" />
+                </e>
+                <e p="Readme_Please.txt" t="Include" />
+              </e>
+              <e p="_Creepy_Cat" t="Include">
+                <e p="_3D Scifi Kit Starter Kit" t="Include">
+                  <e p="_Docs" t="Include">
+                    <e p="Doc.txt" t="Include" />
+                  </e>
+                </e>
+              </e>
+            </e>
+            <e p="Weapons" t="Include">
+              <e p="SkinShader.shader" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="Scenes" t="Include">
+          <e p="GaemOverScene" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="RankFileManager.cs" t="Include" />
+              <e p="UI" t="Include">
+                <e p="InputFieldUserNameUI.cs" t="Include" />
+                <e p="RankListUI.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="PlayScenes" t="Include">
+            <e p="UI" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="PlayerHP_GroupUI.cs" t="Include" />
+                <e p="PlayTimeUI.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="SceneManager.cs" t="Include" />
+          <e p="SharedDataEachScenes" t="Include">
+            <e p="Prefabs" t="Include">
+              <e p="Panel-Options" t="Include">
+                <e p="Scripts" t="Include">
+                  <e p="AudioBGM_SliderUI.cs" t="Include" />
+                  <e p="AudioEffectSliderUI.cs" t="Include" />
+                  <e p="OptionsButtonUI.cs" t="Include" />
+                  <e p="OptionsPanelCloseButtonUI.cs" t="Include" />
+                  <e p="ScreenResolutionDropDownUI.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="RankData.cs" t="Include" />
+          </e>
           <e p="SoundTest" t="Include">
+            <e p="FrameChecker.cs" t="Include" />
             <e p="PlayerCameraController.cs" t="Include" />
             <e p="PlayerInputAction.cs" t="Include" />
             <e p="PlayerMoveController.cs" t="Include" />
+            <e p="Rifle.cs" t="Include" />
+          </e>
+          <e p="StartMenuScene" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="UI" t="Include">
+                <e p="ExitButtonUI.cs" t="Include" />
+                <e p="GameStartButtonUI.cs" t="Include" />
+              </e>
+            </e>
           </e>
         </e>
         <e p="Sounds" t="Include">
@@ -18,6 +170,7 @@
         </e>
       </e>
       <e p="CrashTime.sln" t="IncludeFlat" />
+      <e p="KPU.csproj" t="IncludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
       <e p="Temp\bin" t="ExcludeRecursive" />
