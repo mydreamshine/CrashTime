@@ -21,7 +21,7 @@ namespace KPU.Manager
         private IDictionary<string, IList<GameObject>> ObjectPool =>
             _objectPool ?? (_objectPool = new Dictionary<string, IList<GameObject>>());
 
-        public GameObject Spawn(string spawnTargetName, Vector3 position = default, Quaternion rot = default)
+        public GameObject Spawn(string spawnTargetName, Vector3 position = default, Quaternion rot = default, Transform parent = default)
         {
             var foundedPrefabData = prefabs.FirstOrDefault(_ => _.name == spawnTargetName);
 
@@ -36,13 +36,16 @@ namespace KPU.Manager
                 founded.SetActive(true);
             else
             {
-                founded = Instantiate(foundedPrefabData.prefab);
+                if (parent != default)
+                    founded = Instantiate(foundedPrefabData.prefab, parent);
+                else 
+                    founded = Instantiate(foundedPrefabData.prefab);
                 ObjectPool[spawnTargetName].Add(founded);
             }
 
             if (position != default) founded.transform.position = position;
             if (rot != default) founded.transform.rotation = rot;
-            
+
             founded.gameObject.SetActive(true);
 
             return founded;

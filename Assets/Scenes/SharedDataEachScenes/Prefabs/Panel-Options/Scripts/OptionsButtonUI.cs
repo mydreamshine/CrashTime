@@ -1,18 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using KPU;
+using KPU.Manager;
 using UnityEngine;
 
-public class OptionsButtonUI : MonoBehaviour
+namespace Scenes.SharedDataEachScenes.Prefabs.Scripts
 {
-    // Start is called before the first frame update
-    void Start()
+    public class OptionsButtonUI : MonoBehaviour
     {
-        
-    }
+        private Canvas parentCanvas;
+        private void Awake()
+        {
+            EventManager.On("game_pause", OnGamePause);
+            EventManager.On("open_option_panel", OpenOptionPanel);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            parentCanvas = FindObjectOfType<Canvas>();
+        }
+
+        private void OpenOptionPanel(object obj)
+        {
+            ObjectPoolManager.Instance.Spawn("option_panel", parent: parentCanvas.transform);
+        }
+
+        private void OnGamePause(object obj)
+        {
+            
+        }
+
+        public void OnOpenOptionPanel()
+        {
+            if (GameManager.Instance.State == State.Paused) return;
+            GameManager.Instance.SetState(State.Paused);
+            EventManager.Emit("game_pause");
+            EventManager.Emit("open_option_panel");
+        }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Scenes.SharedDataEachScenes.Prefabs.Scripts
 {
-    public class AudioEffectSliderUI : MonoBehaviour
+    public class AudioBGMSliderUI : MonoBehaviour
     {
         public void OnValueChanged(float value)
         {

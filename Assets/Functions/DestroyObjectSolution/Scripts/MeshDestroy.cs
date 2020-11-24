@@ -1,12 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.Rendering;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace DestroyObjectSolution.Scripts
+namespace Functions.DestroyObjectSolution.Scripts
 {
-    using UnityEngine;
-    using System.Collections.Generic;
-
     public class PartMesh
     {
         private List<Vector3> _vertices = new List<Vector3>();

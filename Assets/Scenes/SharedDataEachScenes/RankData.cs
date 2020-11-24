@@ -1,18 +1,25 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SimpleGameData : MonoBehaviour
+namespace Scenes.SharedDataEachScenes
 {
-    // Start is called before the first frame update
-    void Start()
+    [Serializable]
+    public class Serialization<T>
     {
-        
-    }
+        [SerializeField]
+        private List<T> target;
+        public List<T> ToList() => target;
 
-    // Update is called once per frame
-    void Update()
+        public Serialization(List<T> target) => this.target = target;
+    }
+    
+    [Serializable]
+    public struct RankData
     {
-        
+        public int rank;
+        public string userName;
+        public int huntingCount;
+        public int playMilliSecondTime;
     }
 }

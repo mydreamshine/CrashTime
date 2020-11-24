@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 40065288}
   - component: {fileID: 40065287}
   - component: {fileID: 40065286}
+  - component: {fileID: 40065289}
   m_Layer: 5
   m_Name: Button - Options
   m_TagString: Untagged
@@ -204,7 +205,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 40065287}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 40065289}
+        m_TargetAssemblyTypeName: Scenes.SharedDataEachScenes.Prefabs.Scripts.OptionsButtonUI,
+          Assembly-CSharp
+        m_MethodName: OnOpenOptionPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &40065287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +257,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40065284}
   m_CullTransparentMesh: 0
+--- !u!114 &40065289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40065284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de3c0417bbd43cd47a5d469f47b5492d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &272943990
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,6 +415,7 @@ GameObject:
   - component: {fileID: 353203424}
   - component: {fileID: 353203423}
   - component: {fileID: 353203422}
+  - component: {fileID: 353203425}
   m_Layer: 5
   m_Name: Button - Game Start
   m_TagString: Untagged
@@ -458,7 +485,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 353203423}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 353203425}
+        m_TargetAssemblyTypeName: Scenes.StartMenuScene.Scripts.UI.GameStartButtonUI,
+          Assembly-CSharp
+        m_MethodName: OnStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &353203423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,6 +537,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 353203420}
   m_CullTransparentMesh: 0
+--- !u!114 &353203425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353203420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd3addfa475441341a2276901be88671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &385810476
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +561,7 @@ GameObject:
   - component: {fileID: 385810480}
   - component: {fileID: 385810479}
   - component: {fileID: 385810478}
+  - component: {fileID: 385810481}
   m_Layer: 5
   m_Name: Button - Exit
   m_TagString: Untagged
@@ -578,7 +631,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 385810479}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 385810481}
+        m_TargetAssemblyTypeName: Scenes.StartMenuScene.Scripts.UI.ExitButtonUI,
+          Assembly-CSharp
+        m_MethodName: OnExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &385810479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,6 +683,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385810476}
   m_CullTransparentMesh: 0
+--- !u!114 &385810481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385810476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12a6272deb5e8741a2ec642e78969c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &423863117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 423863119}
+  - component: {fileID: 423863118}
+  m_Layer: 0
+  m_Name: Object Pool Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &423863118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423863117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 337e1a290eeb04f0790df683189e1272, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - name: option_panel
+    prefab: {fileID: 1993094484440561559, guid: 7ab8aaed812adf942966197cb9c8a996, type: 3}
+--- !u!4 &423863119
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423863117}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &490927544
 GameObject:
   m_ObjectHideFlags: 0
