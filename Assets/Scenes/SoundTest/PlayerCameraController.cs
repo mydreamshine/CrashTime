@@ -30,6 +30,8 @@ public class PlayerCameraController : MonoBehaviour,PlayerInputAction.IFpsCamera
     private float stackedHorizontal = 0.0f;
     private Quaternion releasedCameraRotation;
     
+    bool check = true;
+    
     void Start()
     {
         Cursor.visible = false;
@@ -52,22 +54,28 @@ public class PlayerCameraController : MonoBehaviour,PlayerInputAction.IFpsCamera
 
         if (true == _isShooting)
         {
-            if (false == shootSound.isPlaying)
+            if (check == true)
             {
-                shootSound.pitch = Random.Range(0.8f, 1.1f);
-                shootSound.Play();
+                check = false;
+                if (false == shootSound.isPlaying)
+                {
+                    shootSound.pitch = Random.Range(0.8f, 1.1f);
+                    shootSound.Play();
+                }
+
+                //var randomPos = Random.insideUnitCircle * cameraShakeStrength;
+                //cameraTransform.localPosition =
+                //    originCameraPosition + new Vector3(randomPos.x, randomPos.y, 0);
+                cameraShakeTime += Time.deltaTime * cameraShakeStrength;
+                if (cameraShakeTime > cameraShakeDuration)
+                {
+                    cameraTransform.localPosition = originCameraPosition;
+                    cameraShakeTime = 0.0f;
+                    _isShooting = false;
+                }
+                AddRecoil();
             }
-            //var randomPos = Random.insideUnitCircle * cameraShakeStrength;
-            //cameraTransform.localPosition =
-            //    originCameraPosition + new Vector3(randomPos.x, randomPos.y, 0);
-            cameraShakeTime += Time.deltaTime * cameraShakeStrength;
-            if (cameraShakeTime > cameraShakeDuration)
-            {
-                cameraTransform.localPosition = originCameraPosition;
-                cameraShakeTime = 0.0f;
-                _isShooting = false;
-            }
-            AddRecoil();
+            StartCoroutine(Wait());
         }
         else
         {
@@ -122,5 +130,12 @@ public class PlayerCameraController : MonoBehaviour,PlayerInputAction.IFpsCamera
         rifleTransform.localRotation = Quaternion.identity;
         stackedVertical = 0.0f;
         stackedHorizontal = 0.0f;
+    }
+    
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1f);
+        check = true;
+
     }
 }

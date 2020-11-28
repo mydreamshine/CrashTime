@@ -23,7 +23,7 @@ public class MuzzleControl : MonoBehaviour
             var clone = bulletPool.GetObject();
             clone.transform.Rotate(90, 0, 0);
             clone.GetComponent<Rigidbody>().AddForce(transform.forward * BulletSpeed);
-
+            print(clone);
             StartCoroutine(Wait());
         }
     }

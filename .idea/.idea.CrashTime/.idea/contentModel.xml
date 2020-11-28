@@ -7,6 +7,17 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="changho" t="Include">
+          <e p="changhoScript" t="Include">
+            <e p="Bullet.cs" t="Include" />
+            <e p="BulletObjectPool.cs" t="Include" />
+            <e p="FollowCamera.cs" t="Include" />
+            <e p="Manager.cs" t="Include" />
+            <e p="MuzzleControl.cs" t="Include" />
+            <e p="MuzzleEffect.cs" t="Include" />
+            <e p="PlayerControl.cs" t="Include" />
+          </e>
+        </e>
         <e p="Functions" t="Include">
           <e p="DestroyObjectSolution" t="Include">
             <e p="Scripts" t="Include">
@@ -154,7 +165,6 @@
             <e p="PlayerCameraController.cs" t="Include" />
             <e p="PlayerInputAction.cs" t="Include" />
             <e p="PlayerMoveController.cs" t="Include" />
-            <e p="Rifle.cs" t="Include" />
           </e>
           <e p="StartMenuScene" t="Include">
             <e p="Scripts" t="Include">

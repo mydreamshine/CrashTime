@@ -21,13 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="54e18039-bd4c-4df9-8e48-32df281a19fb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Stage1/Stage1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Stage1/Stage1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerCameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerCameraController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/changho/changhoScript/MuzzleControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/changho/changhoScript/MuzzleControl.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +47,7 @@
         <option value="$PROJECT_DIR$/Assets/Scenes/SoundTest/FrameChecker.cs" />
         <option value="$PROJECT_DIR$/Assets/Scenes/SoundTest/Rifle.cs" />
         <option value="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerCameraController.cs" />
+        <option value="$PROJECT_DIR$/Assets/changho/changhoScript/MuzzleControl.cs" />
       </list>
     </option>
   </component>
@@ -112,6 +109,7 @@
       <workItem from="1605592252596" duration="5691000" />
       <workItem from="1606113917495" duration="5520000" />
       <workItem from="1606148167172" duration="2977000" />
+      <workItem from="1606543239360" duration="3787000" />
     </task>
     <servers />
   </component>
