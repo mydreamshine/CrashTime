@@ -1,8 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using changhoScript;
-public class MuzzleControl : MonoBehaviour
+public class GunControl : MonoBehaviour
 {
     [SerializeField]
     private BulletObjectPool bulletPool;
@@ -10,7 +9,7 @@ public class MuzzleControl : MonoBehaviour
     [SerializeField]
     private int BulletSpeed;
 
-    public GameObject bulletPos;
+   
 
     bool check = true;
 
@@ -20,19 +19,22 @@ public class MuzzleControl : MonoBehaviour
         {
             check = false;
             Manager.instance.MuzzlePaticleOn();
-            var clone = bulletPool.GetObject();
-            clone.transform.Rotate(90, 0, 0);
-            clone.GetComponent<Rigidbody>().AddForce(transform.forward * BulletSpeed);
-            print(clone);
+            Fire(); 
             StartCoroutine(Wait());
         }
     }
 
+    private void Fire()
+    {
+        var clone = bulletPool.GetObject();
+        clone.GetComponent<Rigidbody>().AddForce(transform.forward * BulletSpeed);
+
+    }
 
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         check = true;
 
     }

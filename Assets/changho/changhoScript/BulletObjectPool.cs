@@ -10,6 +10,8 @@ namespace changhoScript
         
         public GameObject prefab;
         public int initialSize;
+        public GameObject prefabPos;
+
 
         private readonly Stack<GameObject> instances = new Stack<GameObject>();
 
@@ -31,8 +33,8 @@ namespace changhoScript
             
 
             obj.SetActive(true);
-            obj.transform.position = transform.position;
-            obj.transform.rotation = transform.rotation;
+            obj.transform.position = prefabPos.transform.position;
+            obj.transform.rotation = prefabPos.transform.rotation;
             return obj;
         }
 
@@ -69,7 +71,7 @@ namespace changhoScript
 
         private GameObject CreateInstance() 
         {
-            var obj = Instantiate(prefab ,transform.position,transform.rotation);   
+            var obj = Instantiate(prefab);   
             var pooledObject = obj.AddComponent<PooledObject>();
             pooledObject.pool = this;
            

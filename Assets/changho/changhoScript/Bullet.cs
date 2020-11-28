@@ -1,17 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 using changhoScript;
 public class Bullet : MonoBehaviour
 {
     private float bulletLife;
     private BulletObjectPool bullet;
-  
+    private TrailRenderer bullet_trail;
+    private Rigidbody bullet_rigid;
 
     private void OnEnable()
     {
         bullet = gameObject.GetComponentInParent<BulletObjectPool>();
+        bullet_trail = gameObject.GetComponent<TrailRenderer>();
+        bullet_rigid = gameObject.GetComponent<Rigidbody>();
         bulletLife = 2f;
+
+       
         
     }
 
@@ -25,8 +29,8 @@ public class Bullet : MonoBehaviour
         {
             bulletLife = 2f;
             
-            gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-            gameObject.GetComponent<TrailRenderer>().Clear();
+            bullet_rigid.velocity = new Vector3(0, 0, 0);
+            bullet_trail.Clear();
             bullet.ReturnObject(gameObject);
 
         }
@@ -48,8 +52,8 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-            gameObject.GetComponent<TrailRenderer>().Clear();
+            bullet_rigid.velocity = new Vector3(0, 0, 0);
+            bullet_trail.Clear();
             bullet.ReturnObject(gameObject);
         }
     }

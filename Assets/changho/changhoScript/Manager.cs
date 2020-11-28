@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 public class Manager : MonoBehaviour
@@ -25,17 +24,12 @@ public class Manager : MonoBehaviour
 
     }
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         muzzleEffect =Instantiate(muzzleEffect_prefab, paticlePos.transform.position, paticlePos.transform.rotation);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
 
     public void MuzzlePaticleOn()
