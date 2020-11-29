@@ -28,20 +28,28 @@ namespace Scenes.GameOverScene.Scripts.UI
                 inputFieldUserNameUI = inputFieldGameObject.GetComponent<InputFieldUserNameUI>();
             
             rankList = new List<RankData>();
-            
-            // test
-            playerRankData = new RankData()
-            {
-                userName = "",
-                rank = 0,
-                huntingCount = 12,
-                playMilliSecondTime = 22001
-            };
         }
 
         private void Start()
         {
             LoadRankData(Path.Combine(Application.dataPath, "RankTable.json"));
+            
+            var gameStateManager = FindObjectOfType<GameStateManager>();
+            if (gameStateManager != null)
+            {
+                playerRankData = gameStateManager.gameData;
+            }
+            else
+            {
+                // test
+                playerRankData = new RankData()
+                {
+                    userName = "",
+                    rank = 0,
+                    huntingCount = 0,
+                    playMilliSecondTime = 0
+                };
+            }
 
             playerRankData.rank = CalculatePlayerRank();
             playerRankData.userName = "";

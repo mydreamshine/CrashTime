@@ -16,7 +16,7 @@ namespace KPU.Manager
             state = targetState;
         }
 
-        private void Start()
+        private void Awake()
         {
             state = State.Initializing;
             

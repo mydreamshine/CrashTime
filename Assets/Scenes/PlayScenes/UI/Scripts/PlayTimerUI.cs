@@ -15,16 +15,11 @@ namespace Scenes.PlayScenes.UI.Scripts
             timerText = GetComponent<TMP_Text>();
         }
 
-        private void Start()
-        {
-            TimeManager.Instance.ResetTime();
-            TimeManager.Instance.Active();
-        }
-
         private void Update()
         {
-            var time = new TimeSpan(0, 0, 0, 0, (int) (TimeManager.Instance.Time * 1000));
-            
+            var playTime = (int) (TimeManager.Instance.Time * 1000);
+            var time = new TimeSpan(0, 0, 0, 0, playTime);
+
             timerText.text = $"{time.Minutes:00}:{time.Seconds:00}:{time.Milliseconds:000}";
         }
     }
