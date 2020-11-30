@@ -12,7 +12,7 @@ namespace KPU.Controllers
         [SerializeField] private string spawnEndEvent = "game_ended";
         private Coroutine _routine;
 
-        private void Start()
+        private void Awake()
         {
             EventManager.On(spawnStartEvent, StartSpawn);
             EventManager.On(spawnEndEvent, StopSpawn);

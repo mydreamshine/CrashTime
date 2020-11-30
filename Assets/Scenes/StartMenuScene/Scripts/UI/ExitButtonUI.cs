@@ -1,18 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using KPU.Manager;
 using UnityEngine;
 
-public class ExitButtonUI : MonoBehaviour
+namespace Scenes.StartMenuScene.Scripts.UI
 {
-    // Start is called before the first frame update
-    void Start()
+    public class ExitButtonUI : MonoBehaviour
     {
-        
-    }
+        private void Awake()
+        {
+            EventManager.On("exit_application", ExitApplication);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void ExitApplication(object obj)
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit(); // 어플리케이션 종료
+#endif
+        }
+
+        public void OnExit()
+        {
+            EventManager.Emit("exit_application");
+        }
     }
 }

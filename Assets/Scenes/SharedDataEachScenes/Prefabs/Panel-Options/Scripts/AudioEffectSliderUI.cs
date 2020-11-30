@@ -1,18 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AudioEffectSliderUI : MonoBehaviour
+namespace Scenes.SharedDataEachScenes.Prefabs.Scripts
 {
-    // Start is called before the first frame update
-    void Start()
+    public class AudioEffectSliderUI : MonoBehaviour
     {
-        
-    }
+        public MixLevels mixLevels;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void Start()
+        {
+            mixLevels = GameObject.Find("Audio Mixer Control").GetComponent<MixLevels>();
+        }
+        public void OnValueChanged(float value)
+        {
+            mixLevels.masterMixer.SetFloat("sfxVol", value);
+        }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.Rendering;
+using KPU.Manager;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace DestroyObjectSolution.Scripts
+namespace Functions.DestroyObjectSolution.Scripts
 {
-    using UnityEngine;
-    using System.Collections.Generic;
-
     public class PartMesh
     {
         private List<Vector3> _vertices = new List<Vector3>();
@@ -19,8 +19,8 @@ namespace DestroyObjectSolution.Scripts
         public int[][] triangles;
         public Vector2[] uv;
         
-        // Object Pool로 관리될 예정
-        public GameObject gameObject;
+        // Object Pool로 관리
+        private GameObject gameObject;
         
         public Bounds bounds;
         
@@ -167,23 +167,23 @@ namespace DestroyObjectSolution.Scripts
         /// <param name="original"></param>
         public void MakeGameObject(MeshDestroy original)
         {
-            // Object Pool로 관리될 예정
-            gameObject = new GameObject(original.name);
             var originTransform = original.transform;
-            gameObject.transform.position = originTransform.position;
-            gameObject.transform.rotation = originTransform.rotation;
+            
+            gameObject = ObjectPoolManager.Instance.Spawn(
+                "destroyed_object",
+                originTransform.position, originTransform.rotation);
+            gameObject.name = original.name + "(destructive)";
             gameObject.transform.localScale = originTransform.localScale;
             
             // Set Mesh
+            var mesh = new Mesh
             {
-                var mesh = new Mesh
-                {
-                    name = meshName,
-                    vertices = vertices,
-                    normals = normals,
-                    uv = uv
-                };
-                
+                name = meshName,
+                vertices = vertices,
+                normals = normals,
+                uv = uv
+            };
+            {
                 for (var i = 0; i < triangles.Length; i++)
                 {
                     mesh.SetTriangles(triangles[i], i, true);
@@ -192,27 +192,46 @@ namespace DestroyObjectSolution.Scripts
                 mesh.RecalculateBounds();
                 bounds = mesh.bounds;
 
-                var renderer = gameObject.AddComponent<MeshRenderer>();
+                var renderer = gameObject.GetComponent<MeshRenderer>();
+                if (renderer == null) renderer = gameObject.AddComponent<MeshRenderer>();
                 renderer.materials = materials;
-
-                var filter = gameObject.AddComponent<MeshFilter>();
+                foreach (var mat in renderer.materials)
+                {
+                    mat.SetFloat("_Mode", 3f);
+                    mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
+                    mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                    mat.SetInt("_ZWrite", 0);
+                    mat.DisableKeyword("_ALPHATEST_ON");
+                    mat.DisableKeyword("_ALPHABLEND_ON");
+                    mat.EnableKeyword("_ALPHAPREMULTIPLY_ON");
+                    mat.renderQueue = 3000;
+                    var opaqueColor = mat.color;
+                    opaqueColor.a = 1.0f;
+                    mat.color = opaqueColor;
+                }
+                
+                var filter = gameObject.GetComponent<MeshFilter>();
+                if (filter == null) filter = gameObject.AddComponent<MeshFilter>();
                 filter.mesh = mesh;
             }
             // Set collider
             {
-                var collider = gameObject.AddComponent<MeshCollider>();
+                var collider = gameObject.GetComponent<MeshCollider>();
+                if (collider == null) collider = gameObject.AddComponent<MeshCollider>();
                 collider.convex = true;
+                collider.sharedMesh = mesh;
             }
             // Set rigidbody
             {
-                var rigidbody = gameObject.AddComponent<Rigidbody>();
+                var rigidbody = gameObject.GetComponent<Rigidbody>();
+                if (rigidbody == null) rigidbody = gameObject.AddComponent<Rigidbody>();
                 rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
             }
-            // Set MeshDestroy
+            // Set Disappear
             {
-                var meshDestroy = gameObject.AddComponent<MeshDestroy>();
-                meshDestroy.maxSlicing = original.maxSlicing;
-                meshDestroy.explodeForce = original.explodeForce;
+                var meshDisappear = gameObject.GetComponent<MeshDisappear>();
+                if (meshDisappear == null) gameObject.AddComponent<MeshDisappear>();
+                meshDisappear.renderer = gameObject.GetComponent<MeshRenderer>();
             }
         }
 
@@ -233,12 +252,6 @@ namespace DestroyObjectSolution.Scripts
         private Vector3 slicingPolygonPivotVertex;
         private Vector2 slicingSectionPivotUV;
         private Plane slicingSection;
-        
-        private void Update()
-        {
-            // _debug test
-            if (Input.GetMouseButtonDown(0)) DestroyMesh(Vector3.zero, Vector3.zero);
-        }
 
         public void DestroyMesh(Vector3 impulse, Vector3 impulsePoint)
         {
@@ -295,8 +308,8 @@ namespace DestroyObjectSolution.Scripts
                 newPart.AddForce(explodeForce);
             }
 
-            // Object Pool로 관리될 예정
-            if(newParts.Count > 0) Destroy(gameObject);
+            // Object Pool로 관리
+            if(newParts.Count > 0) gameObject.SetActive(false);
         }
 
         private IEnumerable<PartMesh> ParsingPartMeshes()

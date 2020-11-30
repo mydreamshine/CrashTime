@@ -1,18 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using KPU.Manager;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameStartButtonUI : MonoBehaviour
+namespace Scenes.StartMenuScene.Scripts.UI
 {
-    // Start is called before the first frame update
-    void Start()
+    public class GameStartButtonUI : MonoBehaviour
     {
-        
-    }
+        private void Awake()
+        {
+            EventManager.On("game_start", OnGameStart);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void OnGameStart(object obj)
+        {
+            SceneManager.LoadScene("Scenes/PlayScenes/Stage1/Stage1");
+        }
+
+        public void OnStart()
+        {
+            EventManager.Emit("game_start");
+        }
     }
 }

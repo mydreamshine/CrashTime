@@ -1,18 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using KPU;
+using KPU.Manager;
 using UnityEngine;
 
-public class OptionsPanelCloseButtonUI : MonoBehaviour
+namespace Scenes.SharedDataEachScenes.Prefabs.Scripts
 {
-    // Start is called before the first frame update
-    void Start()
+    public class OptionsPanelCloseButtonUI : MonoBehaviour
     {
-        
-    }
+        private void Awake()
+        {
+            EventManager.On("game_resume", OnGameResume);
+            EventManager.On("close_option_panel", CloseOptionPanel);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void CloseOptionPanel(object obj)
+        {
+            transform.parent.gameObject.SetActive(false);
+        }
+
+        private void OnGameResume(object obj)
+        {
+            
+        }
+
+        public void OnCloseOptionPanel()
+        {
+            if (GameManager.Instance.State == State.Playing) return;
+            GameManager.Instance.SetState(State.Playing);
+            EventManager.Emit("game_resume");
+            EventManager.Emit("close_option_panel");
+        }
     }
 }

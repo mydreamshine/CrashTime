@@ -1,4 +1,6 @@
-﻿namespace KPU.Time
+﻿using System;
+
+namespace KPU.Time
 {
     public class TimeManager : SingletonBehaviour<TimeManager>
     {
@@ -10,11 +12,12 @@
         private void Update()
         {
             if (_timerActive)
-                _time += UnityEngine.Time.deltaTime;
+                _time += UnityEngine.Time.unscaledDeltaTime;
         }
 
         public void Active()
         {
+            DontDestroyOnLoad(gameObject);
             _timerActive = true;
         }
 

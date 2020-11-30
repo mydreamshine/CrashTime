@@ -20,6 +20,7 @@
           <e p="DestroyObjectSolution" t="Include">
             <e p="Scripts" t="Include">
               <e p="MeshDestroy.cs" t="Include" />
+              <e p="MeshDisappear.cs" t="Include" />
             </e>
           </e>
           <e p="KPU" t="Include">
@@ -126,30 +127,45 @@
           </e>
         </e>
         <e p="Scenes" t="Include">
-          <e p="GaemOverScene" t="Include">
+          <e p="GameOverScene" t="Include">
             <e p="Scripts" t="Include">
-              <e p="RankFileManager.cs" t="Include" />
               <e p="UI" t="Include">
                 <e p="InputFieldUserNameUI.cs" t="Include" />
                 <e p="RankListUI.cs" t="Include" />
+                <e p="ReturnMenuButton.cs" t="Include" />
               </e>
             </e>
           </e>
           <e p="PlayScenes" t="Include">
+            <e p="Enemy" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="Enemy.cs" t="Include" />
+                <e p="EnemyActionController.cs" t="Include" />
+                <e p="EnemyActionEventsComponent.cs" t="Include" />
+                <e p="EnemyState.cs" t="Include" />
+                <e p="IDamagable.cs" t="Include" />
+                <e p="Stat.cs" t="Include" />
+                <e p="targetTest.cs" t="Include" />
+              </e>
+            </e>
+            <e p="SlowMotionFunc" t="Include">
+              <e p="SlowMotionTest.cs" t="Include" />
+            </e>
             <e p="UI" t="Include">
               <e p="Scripts" t="Include">
-                <e p="PlayerHP_GroupUI.cs" t="Include" />
-                <e p="PlayTimeUI.cs" t="Include" />
+                <e p="PlayerHpGroupUI.cs" t="Include" />
+                <e p="PlayTimerUI.cs" t="Include" />
               </e>
             </e>
           </e>
-          <e p="SceneManager.cs" t="Include" />
           <e p="SharedDataEachScenes" t="Include">
+            <e p="GameStateManager.cs" t="Include" />
             <e p="Prefabs" t="Include">
               <e p="Panel-Options" t="Include">
                 <e p="Scripts" t="Include">
-                  <e p="AudioBGM_SliderUI.cs" t="Include" />
+                  <e p="AudioBGMSliderUI.cs" t="Include" />
                   <e p="AudioEffectSliderUI.cs" t="Include" />
+                  <e p="OptionPanelReturnMenuButtonUI.cs" t="Include" />
                   <e p="OptionsButtonUI.cs" t="Include" />
                   <e p="OptionsPanelCloseButtonUI.cs" t="Include" />
                   <e p="ScreenResolutionDropDownUI.cs" t="Include" />
