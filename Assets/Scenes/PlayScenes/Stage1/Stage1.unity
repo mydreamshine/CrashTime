@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -194,6 +194,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1740684203202709221}
     m_Modifications:
+    - target: {fileID: 1658042763, guid: 49f265b744f4c58439c8f38f83547fd5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1870021724555349095, guid: 49f265b744f4c58439c8f38f83547fd5, type: 3}
       propertyPath: m_Name
       value: SciFiRifle
@@ -258,7 +262,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 470614285, guid: 49f265b744f4c58439c8f38f83547fd5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 49f265b744f4c58439c8f38f83547fd5, type: 3}
 --- !u!1 &20487009
 GameObject:
@@ -1812,7 +1817,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1066725476
 Transform:
   m_ObjectHideFlags: 0
@@ -2702,8 +2707,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a67a4cc5793f58f40922a2775ea617a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4783069910340099536, guid: 715b751fafb54574cbe316cf2634bc7d, type: 3}
+  prefab: {fileID: 4359198334285433747, guid: c3d6f7d52eb8e3949b69f21ddf79f2b3, type: 3}
   initialSize: 5
+  prefabPos: {fileID: 470614282}
 --- !u!1 &1681904834
 GameObject:
   m_ObjectHideFlags: 0

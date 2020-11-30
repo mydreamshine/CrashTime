@@ -11,11 +11,9 @@
           <e p="changhoScript" t="Include">
             <e p="Bullet.cs" t="Include" />
             <e p="BulletObjectPool.cs" t="Include" />
-            <e p="FollowCamera.cs" t="Include" />
+            <e p="GunControl.cs" t="Include" />
             <e p="Manager.cs" t="Include" />
-            <e p="MuzzleControl.cs" t="Include" />
             <e p="MuzzleEffect.cs" t="Include" />
-            <e p="PlayerControl.cs" t="Include" />
           </e>
         </e>
         <e p="Functions" t="Include">

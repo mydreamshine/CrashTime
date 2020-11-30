@@ -22,8 +22,6 @@
     <list default="true" id="54e18039-bd4c-4df9-8e48-32df281a19fb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerCameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerCameraController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/changho/changhoScript/MuzzleControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/changho/changhoScript/MuzzleControl.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +107,8 @@
       <workItem from="1605592252596" duration="5691000" />
       <workItem from="1606113917495" duration="5520000" />
       <workItem from="1606148167172" duration="2977000" />
-      <workItem from="1606543239360" duration="3787000" />
+      <workItem from="1606543239360" duration="4479000" />
+      <workItem from="1606566852253" duration="1250000" />
     </task>
     <servers />
   </component>
