@@ -6,10 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/PlayScenes/Stage2/Stage2.unity
-    guid: 08e5347decee20b4f81f4d9d0129ed94
-  - enabled: 1
-    path: Assets/Scenes/StartMenuScene/StartMenuScene.unity
+    path: Assets/Scenes/TestCinematic/StartMenuScene.unity
     guid: 89d027148dd005643b5df09fde8db549
   - enabled: 1
     path: Assets/Scenes/PlayScenes/Stage1/Stage1.unity
@@ -17,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOverScene/GameOverScene.unity
     guid: bb6e1583bfa059a4ba80bda2ea399fc5
+  - enabled: 1
+    path: Assets/Scenes/PlayScenes/Stage2/Stage2.unity
+    guid: 08e5347decee20b4f81f4d9d0129ed94
+  - enabled: 1
+    path: Assets/Scenes/StartMenuScene/StartMenuScene.unity
+    guid: 8ff064bb999955a429931cdd0270a2cc
   m_configObjects: {}

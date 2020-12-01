@@ -58,6 +58,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   hitPlayerDistanceOffset: 2
+  deadSimulate: 0
+  deadSimulateFactor: 1
 --- !u!114 &207234990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,6 +94,10 @@ PrefabInstance:
     - target: {fileID: 3776257245069818333, guid: 9be0fdccb69b445428278addc8abad66, type: 3}
       propertyPath: maxSlicing
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3776257245069818333, guid: 9be0fdccb69b445428278addc8abad66, type: 3}
+      propertyPath: explodeForce
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5532112960755676676, guid: 9be0fdccb69b445428278addc8abad66, type: 3}
       propertyPath: m_LocalPosition.x

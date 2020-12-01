@@ -165,7 +165,8 @@ namespace Functions.DestroyObjectSolution.Scripts
         /// Mesh Destroy 구성: MeshRenderer, MeshFilter, etc.
         /// </summary>
         /// <param name="original"></param>
-        public void MakeGameObject(MeshDestroy original)
+        /// <param name="simulateFactor"></param>
+        public void MakeGameObject(MeshDestroy original, float simulateFactor = 1.0f)
         {
             var originTransform = original.transform;
             
@@ -232,6 +233,9 @@ namespace Functions.DestroyObjectSolution.Scripts
                 var meshDisappear = gameObject.GetComponent<MeshDisappear>();
                 if (meshDisappear == null) gameObject.AddComponent<MeshDisappear>();
                 meshDisappear.renderer = gameObject.GetComponent<MeshRenderer>();
+                meshDisappear.rigidbody = gameObject.GetComponent<Rigidbody>();
+
+                meshDisappear.rigidBodyFullActionScale = simulateFactor;
             }
         }
 
@@ -253,7 +257,7 @@ namespace Functions.DestroyObjectSolution.Scripts
         private Vector2 slicingSectionPivotUV;
         private Plane slicingSection;
 
-        public void DestroyMesh(Vector3 impulse, Vector3 impulsePoint)
+        public void DestroyMesh(Vector3 impulse, Vector3 impulsePoint, float simulateFactor = 1.0f)
         {
             var originParts = ParsingPartMeshes();
             var newParts = new List<PartMesh>(originParts);
@@ -304,7 +308,7 @@ namespace Functions.DestroyObjectSolution.Scripts
 
             foreach (var newPart in newParts)
             {
-                newPart.MakeGameObject(this);
+                newPart.MakeGameObject(this, simulateFactor);
                 newPart.AddForce(explodeForce);
             }
 
