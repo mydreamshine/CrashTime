@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="54e18039-bd4c-4df9-8e48-32df281a19fb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Functions/DestroyObjectSolution/Prefabs/DestroyedObject.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Functions/DestroyObjectSolution/Scripts/MeshDisappear.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/RankTable.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/RankTable.json.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/Animations/ma@Walking Backwards.fbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/Animations/ma@Walking Backwards.fbx.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/ma_Animator.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/ma_Animator.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Sprites/hiclipart.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Sprites/hiclipart.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/GameOverScene/Scripts/UI/InputFieldUserNameUI.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/GameOverScene/Scripts/UI/RankListUI.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/GameOverScene/Scripts/UI/ReturnMenuButton.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/GameOverScene/Scripts/UI/ReturnMenuButton.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Enemy.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Enemy/Prefabs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Enemy/Prefabs/White Ninja Variant Variant.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Enemy/Prefabs/White Ninja Variant Variant.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Enemy/Scripts.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Enemy/Scripts/Enemy.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Enemy/Scripts/Enemy.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Enemy/Scripts/EnemyActionController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Enemy/Scripts/EnemyActionController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Enemy/Scripts/EnemyActionEventsComponent.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Enemy/Scripts/EnemyActionEventsComponent.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Enemy/Scripts/EnemyState.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Enemy/Scripts/EnemyState.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Enemy/Scripts/IDamagable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Enemy/Scripts/IDamagable.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Enemy/Scripts/Stat.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Enemy/Scripts/Stat.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Enemy/Scripts/targetTest.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/SlowMotionFunc.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/SlowMotionFunc/SlowMotionTest.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Stage1/Stage1.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Stage1/Stage1/NavMesh.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Stage1/Stage1/NavMesh.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Stage2/Stage2.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Stage2/Stage2/NavMesh.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Stage2/Stage2/NavMesh.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/UI/Prefabs/Canvas.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/UI/Prefabs/Canvas.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/UI/Scripts/PlayTimerUI.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/UI/Scripts/PlayerHpGroupUI.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/GameStateManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/GameStateManager.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Panel - Options 1.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Panel - Options 2.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Scripts/AudioBGMSliderUI.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Scripts/OptionPanelReturnMenuButtonUI.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Scripts/OptionPanelReturnMenuButtonUI.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CrashTime/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Effects/HitParticleMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Effects/HitParticleMat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Functions/DestroyObjectSolution/Scripts/MeshDestroy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Functions/DestroyObjectSolution/Scripts/MeshDestroy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Functions/KPU/Controllers/SpawnController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Functions/KPU/Controllers/SpawnController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Functions/KPU/Manager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Functions/KPU/Manager/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Functions/KPU/Manager/ObjectPoolManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Functions/KPU/Manager/ObjectPoolManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Functions/KPU/Time/TimeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Functions/KPU/Time/TimeManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Functions/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Functions/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/Animations/ma@Flying Back Death.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/Animations/ma@Flying Back Death.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/Animations/ma@GuardWalking.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/Animations/ma@GuardWalking.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/Animations/ma@Hook Punch.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/Animations/ma@Hook Punch.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/Animations/ma@Idle.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/Animations/ma@Idle.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/Animations/ma@Punching.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/Animations/ma@Punching.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/Animations/ma@Running.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/Animations/ma@Running.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/Animations/ma@Walking.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/Animations/ma@Walking.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/Model Materials/White.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/AssetStoreResources/Characters/Martial Arts Assets Free/Models/Model Materials/White.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GaemOverScene.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameOverScene.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GaemOverScene/EnviromentSettings.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameOverScene/EnviromentSettings.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GaemOverScene/GameOverScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameOverScene/GameOverScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GaemOverScene/GameOverScene.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameOverScene/GameOverScene.unity.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GaemOverScene/Scripts.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameOverScene/Scripts.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GaemOverScene/Scripts/RankFileManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GaemOverScene/Scripts/RankFileManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Functions/DestroyObjectSolution/Scripts/MeshDisappear.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GaemOverScene/Scripts/UI.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameOverScene/Scripts/UI.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GaemOverScene/Scripts/UI/InputFieldUserNameUI.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GaemOverScene/Scripts/UI/InputFieldUserNameUI.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameOverScene/Scripts/UI/InputFieldUserNameUI.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GaemOverScene/Scripts/UI/RankListUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Enemy/Scripts/targetTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GaemOverScene/Scripts/UI/RankListUI.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameOverScene/Scripts/UI/RankListUI.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Stage1/Stage1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Stage1/Stage1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Stage1/Stage1_Test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Stage1/Stage1_Test.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Stage2/Stage2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/Stage2/Stage2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/UI/Prefabs/Image - Heart.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/UI/Prefabs/Image - Heart.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Functions/DestroyObjectSolution/Prefabs/DestroyedObject.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/UI/Scripts/PlayTimeUI.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/UI/Scripts/PlayTimeUI.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/UI/Scripts/PlayTimerUI.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/UI/Scripts/PlayerHP_GroupUI.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/UI/Scripts/PlayerHP_GroupUI.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/UI/Scripts/PlayerHPGroupUI.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SceneManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayScenes/SlowMotionFunc/SlowMotionTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SceneManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Panel - Options.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Panel - Options 1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Panel - Options.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Panel - Options 2.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Scripts/AudioBGM_SliderUI.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Scripts/AudioBGM_SliderUI.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Scripts/AudioBGMSliderUI.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Scripts/AudioEffectSliderUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Scripts/AudioEffectSliderUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Scripts/OptionsButtonUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Scripts/OptionsButtonUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Scripts/OptionsPanelCloseButtonUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Scripts/OptionsPanelCloseButtonUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Scripts/ScreenResolutionDropDownUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Scripts/ScreenResolutionDropDownUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/RankData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/RankData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/StartMenuScene/Scripts/UI/ExitButtonUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/StartMenuScene/Scripts/UI/ExitButtonUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/StartMenuScene/Scripts/UI/GameStartButtonUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/StartMenuScene/Scripts/UI/GameStartButtonUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/StartMenuScene/StartMenuScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/StartMenuScene/StartMenuScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sounds/AudioMixer.mixer" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sounds/AudioMixer.mixer" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/NavMeshAreas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/NavMeshAreas.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerInputAction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.6.3/Editor/Editors/CinemachineVirtualCameraEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../New Unity Project/Assets/_Barking_Dog/Common Scripts/Turn_Move.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerInputAction.cs" />
+        <option value="$PROJECT_DIR$/Assets/Sounds/MixLevels.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerMoveController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scenes/SoundTest/FrameChecker.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scenes/SoundTest/Rifle.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scenes/SoundTest/PlayerCameraController.cs" />
+        <option value="$PROJECT_DIR$/Assets/changho/changhoScript/MuzzleControl.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scenes/PlayScenes/UI/Scripts/PlayerHpGroupUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Scripts/AudioEffectSliderUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scenes/SharedDataEachScenes/Prefabs/Panel-Options/Scripts/AudioBGMSliderUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/changho/changhoScript/GunControl.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1jjm3Z5figFybeTNffriB7HFBX5" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="54e18039-bd4c-4df9-8e48-32df281a19fb" name="Default Changelist" comment="" />
+      <created>1604325685071</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1604325685071</updated>
+      <workItem from="1604325716945" duration="2461000" />
+      <workItem from="1604380665251" duration="1699000" />
+      <workItem from="1604557335323" duration="1367000" />
+      <workItem from="1604650979405" duration="191000" />
+      <workItem from="1604651209763" duration="1141000" />
+      <workItem from="1604724895031" duration="3309000" />
+      <workItem from="1604902920130" duration="222000" />
+      <workItem from="1604985332234" duration="1202000" />
+      <workItem from="1605541029025" duration="1176000" />
+      <workItem from="1605592252596" duration="5691000" />
+      <workItem from="1606113917495" duration="5520000" />
+      <workItem from="1606148167172" duration="2977000" />
+      <workItem from="1606543239360" duration="4479000" />
+      <workItem from="1606566852253" duration="1250000" />
+      <workItem from="1606713466041" duration="4079000" />
+      <workItem from="1606737956697" duration="1021000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1606115795918">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1606115795918" />
+  </component>
+</project>
