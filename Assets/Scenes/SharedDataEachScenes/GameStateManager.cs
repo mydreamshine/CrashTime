@@ -1,7 +1,10 @@
 ﻿using KPU;
 using KPU.Manager;
 using KPU.Time;
+using Scenes.PlayScenes.Enemy.Scripts;
 using Scenes.PlayScenes.UI.Scripts;
+using Scenes.SharedDataEachScenes.Prefabs.Cinematic_Elements;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Scenes.SharedDataEachScenes
@@ -10,6 +13,10 @@ namespace Scenes.SharedDataEachScenes
     {
         public RankData gameData;
         public int healthPoint;
+        public int enemyCount;
+        private string currSceneName;
+        public float sceneChangeDelay = 3f;
+        private float sceneChangeDelayTimeStack;
 
         private void Awake()
         {
@@ -20,15 +27,26 @@ namespace Scenes.SharedDataEachScenes
 
         private void SceneManagerOnactiveSceneChanged(Scene arg0, Scene arg1)
         {
-            var currSceneName = SceneManager.GetActiveScene().name;
+            currSceneName = SceneManager.GetActiveScene().name;
             if (currSceneName.Contains("Stage"))
             {
                 if (currSceneName == "Stage1")
                     Init();
+
+                var enemys = FindObjectsOfType<Enemy>();
+                enemyCount = (enemys != null) ? enemys.Length : 0;
+                
+                TimeManager.Instance.Active();
             }
             else
                 TimeManager.Instance.DeActive();
             
+            sceneChangeDelayTimeStack = 0.0f;
+            
+            SlowMotionManager.Instance.Init();
+            var cinematicCustom = FindObjectOfType<CinematicCustom>();
+            if (cinematicCustom != null) SlowMotionManager.Instance.SetSlowSpeed(cinematicCustom.timeScale);
+
             GameManager.Instance.SetState(State.Playing);
             
             EventManager.Emit("game_started");
@@ -36,21 +54,47 @@ namespace Scenes.SharedDataEachScenes
 
         private void Start()
         {
+            currSceneName = SceneManager.GetActiveScene().name;
             TimeManager.Instance.Active();
         }
 
         private void Update()
         {
-            if (TimeManager.Instance.TimerActive)
+            if (!currSceneName.Contains("Stage")) return;
+
+            if (GameManager.Instance.State == State.Paused)
             {
-                var playTime = (int) (TimeManager.Instance.Time * 1000);
-                gameData.playMilliSecondTime = playTime;
+                SlowMotionManager.Instance.SetSlowSpeed(0f);
+                TimeManager.Instance.DeActive();
+            }
+            else
+            {
+                SlowMotionManager.Instance.SetSlowSpeed(SlowMotionManager.Instance.CurrentSlowSpeed);
+                TimeManager.Instance.Active();
+            }
+            
+            var playTime = (int) (TimeManager.Instance.Time * 1000);
+            gameData.playMilliSecondTime = playTime;
+            
+            var enemys = FindObjectsOfType<Enemy>(false);
+            enemyCount = (enemys != null) ? enemys.Length : 0;
+
+            if (enemyCount == 0 || healthPoint == 0)
+            {
+                TimeManager.Instance.DeActive();
                 
-                if (healthPoint == 0)
-                {
-                    TimeManager.Instance.DeActive();
-                    SceneManager.LoadScene("Scenes/GameOverScene/GameOverScene");
-                }
+                sceneChangeDelayTimeStack += Time.unscaledDeltaTime;
+            }
+
+            if (!(sceneChangeDelayTimeStack >= sceneChangeDelay)) return;
+            switch (currSceneName)
+            {
+                case "Stage1":
+                    SceneManager.LoadScene(healthPoint == 0
+                        ? "Scenes/GameOverScene/GameOverScene"
+                        : "Scenes/PlayScenes/Stage2/Stage2");
+                    break;
+                case "Stage2": SceneManager.LoadScene("Scenes/GameOverScene/GameOverScene"); break;
             }
         }
 

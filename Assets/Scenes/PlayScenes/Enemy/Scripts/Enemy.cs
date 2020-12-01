@@ -22,6 +22,8 @@ namespace Scenes.PlayScenes.Enemy.Scripts
         [SerializeField] private float sightLength = 2f;
         [SerializeField] private LayerMask layerToCast;
         [SerializeField] private float hitPlayerDistanceOffset = 2;
+        [SerializeField] private bool deadSimulate;
+        [SerializeField] [Range(0.0f, 1.0f)] private float deadSimulateFactor = 1.0f;
 
         private Vector3 thisPosition;
         private Vector3 thisForward;
@@ -52,7 +54,11 @@ namespace Scenes.PlayScenes.Enemy.Scripts
             state = EnemyState.Idle;
             stat.AddHp(stat.MaxHp);
 
-            if (target == null) target = FindObjectOfType<targetTest>().transform;
+            if (target == null)
+            {
+                var targetComp = FindObjectOfType<targetTest>();
+                if (targetComp != null) target = targetComp.transform;
+            }
             notMoveEventsDone = true;
 
             lifeRoutine = StartCoroutine(LifeRoutine());
@@ -69,6 +75,8 @@ namespace Scenes.PlayScenes.Enemy.Scripts
 
         private void UpdateToTargetRelData()
         {
+            if (target == null) return;
+            
             var thisTransform = transform;
             thisPosition = thisTransform.position;
             thisForward = thisTransform.forward;
@@ -79,6 +87,8 @@ namespace Scenes.PlayScenes.Enemy.Scripts
 
         private bool CheckExistTargetInView()
         {
+            if (target == null) return false;
+            
             var angle = Vector3.Dot(directionToTarget, thisForward);
 
             return (angle > sightAngle
@@ -91,6 +101,8 @@ namespace Scenes.PlayScenes.Enemy.Scripts
         /// </summary>
         public void HitDistCheckAndRealDamage()
         {
+            if (target == null) return;
+            
             if (distanceToTarget <= hitPlayerDistanceOffset)
             {
                 // target.Damage(stat.AttackPower);
@@ -104,7 +116,8 @@ namespace Scenes.PlayScenes.Enemy.Scripts
         /// </summary>
         public void DestroyObject()
         {
-            meshDestroy.DestroyMesh(Vector3.zero, Vector3.zero);
+            var simulateFactor = deadSimulate ? deadSimulateFactor : 1.0f;
+            meshDestroy.DestroyMesh(Vector3.zero, Vector3.zero, simulateFactor);
             //gameObject.SetActive(false);
         }
 
@@ -121,26 +134,29 @@ namespace Scenes.PlayScenes.Enemy.Scripts
 
         private IEnumerator LifeRoutine()
         {
-            while (state != EnemyState.Dead)
+            if (!deadSimulate)
             {
-                UpdateToTargetRelData();
-                
-                if (state == EnemyState.Idle) Idle();
-                else if (state == EnemyState.Finding) Find();
-                else if (state == EnemyState.Chasing) Chasing();
-                else if (state == EnemyState.Attacking) Attack();
-                
-                Debug.DrawLine(thisPosition, thisPosition + thisForward * sightLength, Color.red);
-                
-                yield return null;
-            }
+                while (state != EnemyState.Dead)
+                {
+                    UpdateToTargetRelData();
 
+                    if (state == EnemyState.Idle) Idle();
+                    else if (state == EnemyState.Finding) Find();
+                    else if (state == EnemyState.Chasing) Chasing();
+                    else if (state == EnemyState.Attacking) Attack();
+
+                    Debug.DrawLine(thisPosition, thisPosition + thisForward * sightLength, Color.red);
+
+                    yield return null;
+                }
+            }
+            
             Death();
         }
 
         private void Death()
         {
-            GameStateManager.Instance.gameData.huntingCount += 1;
+            if (!deadSimulate) GameStateManager.Instance.gameData.huntingCount += 1;
             
             enemyActionController.Death();
         }
@@ -150,8 +166,11 @@ namespace Scenes.PlayScenes.Enemy.Scripts
             if (CheckExistTargetInView())
             {
                 //transform.rotation = Quaternion.LookRotation(directionToTarget);
-                agent.SetDestination(target.position);
-                agent.velocity = Vector3.zero;
+                if (target != null)
+                {
+                    agent.SetDestination(target.position);
+                    agent.velocity = Vector3.zero;
+                }
 
                 if (notMoveEventsDone)
                 {
@@ -174,8 +193,12 @@ namespace Scenes.PlayScenes.Enemy.Scripts
             
             if (CheckExistTargetInView())
             {
-                if (distanceToTarget <= hitPlayerDistanceOffset) state = EnemyState.Attacking;
-                else if (distanceToTarget <= sightLength && notMoveEventsDone) agent.SetDestination(target.position);
+                if (target != null)
+                {
+                    if (distanceToTarget <= hitPlayerDistanceOffset) state = EnemyState.Attacking;
+                    else if (distanceToTarget <= sightLength && notMoveEventsDone)
+                        agent.SetDestination(target.position);
+                }
             }
             else state = EnemyState.Idle;
 
