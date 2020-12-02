@@ -1,4 +1,5 @@
 ﻿
+using System;
 using UnityEngine;
 
 public class Manager : MonoBehaviour
@@ -6,6 +7,9 @@ public class Manager : MonoBehaviour
     [SerializeField] private ParticleSystem muzzleEffect_prefab;
     private ParticleSystem muzzleEffect;
     [SerializeField] private GameObject paticlePos;
+
+    private ParticleSystem hitEffect;
+    [SerializeField] private ParticleSystem hitEffect_prefab;
 
     public static Manager instance = null;
 
@@ -28,6 +32,7 @@ public class Manager : MonoBehaviour
     void Start()
     {
         muzzleEffect =Instantiate(muzzleEffect_prefab, paticlePos.transform.position, paticlePos.transform.rotation);
+        hitEffect = Instantiate(hitEffect_prefab);
     }
 
 
@@ -40,4 +45,12 @@ public class Manager : MonoBehaviour
         muzzleEffect.gameObject.SetActive(true);
     }
 
+    public void HitParticleOn(Transform target)
+    {
+        print(target);
+        hitEffect.transform.position = target.position;
+        hitEffect.transform.rotation = target.rotation;
+        
+        hitEffect.Play();
+    }
 }
