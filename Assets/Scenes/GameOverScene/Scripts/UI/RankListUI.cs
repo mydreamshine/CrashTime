@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Scenes.SharedDataEachScenes;
 using TMPro;
@@ -22,10 +23,9 @@ namespace Scenes.GameOverScene.Scripts.UI
         {
             textField = GetComponent<TMP_Text>();
             
-            if (inputFieldGameObject == null)
-                inputFieldUserNameUI = transform.parent.GetComponentInChildren<InputFieldUserNameUI>();
-            else
-                inputFieldUserNameUI = inputFieldGameObject.GetComponent<InputFieldUserNameUI>();
+            inputFieldUserNameUI = inputFieldGameObject == null
+                ? transform.parent.GetComponentInChildren<InputFieldUserNameUI>()
+                : inputFieldGameObject.GetComponent<InputFieldUserNameUI>();
             
             rankList = new List<RankData>();
         }
@@ -64,14 +64,9 @@ namespace Scenes.GameOverScene.Scripts.UI
         {
             playerRankData.userName = "unknown"; // 식별용
             rankList.Add(playerRankData);
-            rankList.Sort(delegate(RankData lhsData, RankData rhsData)
-            {
-                if (lhsData.playMilliSecondTime > rhsData.playMilliSecondTime) return 1;
-                if (lhsData.playMilliSecondTime < rhsData.playMilliSecondTime) return -1;
-                return 0;
-            });
+            rankList = rankList.OrderBy(data => data.playMilliSecondTime).ThenByDescending(data => data.huntingCount).ToList();
 
-            for (int i = 0; i < rankList.Count; i++)
+            for (var i = 0; i < rankList.Count; i++)
             {
                 var data = rankList[i];
                 data.rank = i + 1;
@@ -85,12 +80,12 @@ namespace Scenes.GameOverScene.Scripts.UI
 
         private void RankListToText(int rankViewStartIndex, int maxRankView)
         {
-            string rankTextFull = "";
-            for (int i = rankViewStartIndex; i < rankViewStartIndex + maxRankView; i++)
+            var rankTextFull = "";
+            for (var i = rankViewStartIndex; i < rankViewStartIndex + maxRankView; i++)
             {
-                string rankTextLine = "    ";
+                var rankTextLine = "    ";
                 
-                string tRank = (i + 1).ToString();
+                var tRank = (i + 1).ToString();
                 if (i == 0) tRank += "st.";
                 else if (i == 1) tRank += "nd.";
                 else if (i == 2) tRank += "rd.";
@@ -101,14 +96,14 @@ namespace Scenes.GameOverScene.Scripts.UI
                 else if (i >= 9) rankTextLine += "          ";
                 else rankTextLine += "            ";
 
-                string tHuntingCount = $"{rankList[i].huntingCount:D2}";
+                var tHuntingCount = $"{rankList[i].huntingCount:D2}";
                 rankTextLine += tHuntingCount + "            ";
                 
                 var timeSpan = new TimeSpan(0,0,0,0,rankList[i].playMilliSecondTime);
-                string tTime = $"{timeSpan.Minutes:00}:{timeSpan.Seconds:00}:{timeSpan.Milliseconds:D3}";
+                var tTime = $"{timeSpan.Minutes:00}:{timeSpan.Seconds:00}:{timeSpan.Milliseconds:D3}";
                 rankTextLine += tTime + "             ";
 
-                string tName = rankList[i].userName;
+                var tName = rankList[i].userName;
                 rankTextLine += tName;
 
                 if (i + 1 < rankViewStartIndex + maxRankView) rankTextLine += Environment.NewLine;

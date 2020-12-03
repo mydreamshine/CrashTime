@@ -21,7 +21,7 @@ namespace Scenes.SharedDataEachScenes
         
         public void SetSlowSpeed(float amount)
         {
-            Time.timeScale = Mathf.Clamp(amount, 0.0f, 1.0f);
+            Time.timeScale = currentSlowSpeed = Mathf.Clamp(amount, 0.0f, 1.0f);
         }
     }
 }
