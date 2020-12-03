@@ -75,7 +75,7 @@ namespace changhoScript
             var pooledObject = obj.AddComponent<PooledObject>();
             pooledObject.pool = this;
            
-            obj.transform.SetParent(transform);    
+           //obj.transform.SetParent(transform);    
             return obj;
         }
     }

@@ -29,7 +29,7 @@ public class PlayerCameraController : MonoBehaviour,PlayerInputAction.IFpsCamera
     private float stackedVertical = 0.0f;
     private float stackedHorizontal = 0.0f;
     private Quaternion releasedCameraRotation;
-    
+    [SerializeField]private GunControl gun;
     bool check = true;
     
     void Start()
@@ -61,6 +61,7 @@ public class PlayerCameraController : MonoBehaviour,PlayerInputAction.IFpsCamera
                 {
                     shootSound.pitch = Random.Range(0.8f, 1.1f);
                     shootSound.Play();
+                    gun.Fire();
                 }
 
                 //var randomPos = Random.insideUnitCircle * cameraShakeStrength;

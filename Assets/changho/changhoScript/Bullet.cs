@@ -4,21 +4,29 @@ using changhoScript;
 public class Bullet : MonoBehaviour
 {
     private float bulletLife;
-    private BulletObjectPool bullet;
+    private BulletObjectPool bulletPoolManager = null;
     private TrailRenderer bullet_trail;
     private Rigidbody bullet_rigid;
 
-    [SerializeField] private Manager particleManager = null;
+    private Manager particleManager = null;
 
     private void OnEnable()
     {
-        bullet = gameObject.GetComponentInParent<BulletObjectPool>();
+      
         bullet_trail = gameObject.GetComponent<TrailRenderer>();
         bullet_rigid = gameObject.GetComponent<Rigidbody>();
         bulletLife = 2f;
         if (null == particleManager)
         {
             particleManager = GameObject.Find("ParticleManager").GetComponent<Manager>();
+        }
+
+
+        if(null == bulletPoolManager)
+        {
+
+            bulletPoolManager = GameObject.Find("BulletObjectPool").GetComponent<BulletObjectPool>();
+
         }
 
     }
@@ -35,7 +43,7 @@ public class Bullet : MonoBehaviour
             
             bullet_rigid.velocity = new Vector3(0, 0, 0);
             bullet_trail.Clear();
-            bullet.ReturnObject(gameObject);
+            bulletPoolManager.ReturnObject(gameObject);
 
         }
 
@@ -59,7 +67,7 @@ public class Bullet : MonoBehaviour
             particleManager.HitParticleOn(transform);
             bullet_rigid.velocity = new Vector3(0, 0, 0);
             bullet_trail.Clear();
-            bullet.ReturnObject(gameObject);
+            bulletPoolManager.ReturnObject(gameObject);
         }
     }
 }

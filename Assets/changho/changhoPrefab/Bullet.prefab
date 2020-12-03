@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 4359198334285433747}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 39.964214, y: 2.6625347, z: 5.171818}
-  m_LocalScale: {x: 0.1497252, y: 0.15530439, z: 0.33908898}
+  m_LocalScale: {x: 0.056851745, y: 0.0589702, z: 0.12875454}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -148,7 +148,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0.0055671725
-        value: 0.12857121
+        value: 0.07142705
         inSlope: 0
         outSlope: 0
         tangentMode: 0

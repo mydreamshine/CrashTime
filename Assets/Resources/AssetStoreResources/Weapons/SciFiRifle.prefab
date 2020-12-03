@@ -28,7 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8892628883857724241}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1658042763
 GameObject:
@@ -58,7 +58,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8892628883857724241}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1870021724555349095
 GameObject:
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 8892628883857724241}
   - component: {fileID: 5329554207867788733}
   - component: {fileID: 2830290424778278087}
-  - component: {fileID: 470614285}
+  - component: {fileID: 7146095136233126091}
   m_Layer: 0
   m_Name: SciFiRifle
   m_TagString: gun
@@ -90,8 +90,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 4.29, z: -8.16}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
-  - {fileID: 1658042764}
   - {fileID: 1066725476}
+  - {fileID: 1658042764}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -144,7 +144,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &470614285
+--- !u!114 &7146095136233126091
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,4 +157,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPool: {fileID: 0}
-  BulletSpeed: 40
+  BulletSpeed: 10
