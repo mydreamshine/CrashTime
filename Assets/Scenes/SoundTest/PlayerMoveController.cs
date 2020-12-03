@@ -1,5 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using KPU;
+using KPU.Manager;
+using Scenes.SharedDataEachScenes.Prefabs.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +16,7 @@ public class PlayerMoveController : MonoBehaviour, PlayerInputAction.IFpsActions
 
     [SerializeField] private AudioSource walkSound;
 
+    [SerializeField] private OptionsButtonUI optionsButtonUI;
     void Awake()
     {
         _characterController = GetComponent<CharacterController>();
@@ -33,8 +37,14 @@ public class PlayerMoveController : MonoBehaviour, PlayerInputAction.IFpsActions
             walkSound.pitch = Random.Range(0.8f, 1.1f);
             walkSound.Play();
         }
-        
 
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (GameManager.Instance.State == State.Paused) return;
+            GameManager.Instance.SetState(State.Paused);
+            EventManager.Emit("game_pause");
+            EventManager.Emit("open_option_panel");
+        }
     }
 
     void OnEnable()

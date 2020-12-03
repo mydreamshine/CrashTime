@@ -14,22 +14,6 @@ public class MixLevels : MonoBehaviour
     public AudioMixerSnapshot unpaused;
     public AudioSource bgmAudioSource;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            pausedText.enabled = !pausedText.enabled;
-            Pause();
-        }    
-    }
-
-    public void Pause()
-    {
-        // 일시정지
-        //Time.timeScale = Time.timeScale == 0 ? 1 : 0;
-        Lowpass();
-    }
-
     public void Lowpass()
     {
         if (pausedText.enabled)

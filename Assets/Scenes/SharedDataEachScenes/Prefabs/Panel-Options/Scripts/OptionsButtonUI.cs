@@ -7,6 +7,7 @@ namespace Scenes.SharedDataEachScenes.Prefabs.Scripts
     public class OptionsButtonUI : MonoBehaviour
     {
         private Canvas parentCanvas;
+        [SerializeField] private MixLevels mixLevels;
         private void Awake()
         {
             EventManager.On("game_pause", OnGamePause);
@@ -15,14 +16,16 @@ namespace Scenes.SharedDataEachScenes.Prefabs.Scripts
             parentCanvas = FindObjectOfType<Canvas>();
         }
 
-        private void OpenOptionPanel(object obj)
+        public void OpenOptionPanel(object obj)
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             ObjectPoolManager.Instance.Spawn("option_panel", parent: parentCanvas.transform);
         }
 
         private void OnGamePause(object obj)
         {
-            
+            mixLevels.paused.TransitionTo(0.01f);
         }
 
         public void OnOpenOptionPanel()
