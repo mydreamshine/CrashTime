@@ -11,19 +11,7 @@ public class GunControl : MonoBehaviour
 
    
 
-    //bool check = true;
-
-    //private void Update()
-    //{
-    //    if (Input.GetMouseButtonDown(0)&&check)
-    //    {
-    //        check = false;
-    //        Manager.instance.MuzzlePaticleOn();
-    //        Fire(); 
-    //        StartCoroutine(Wait());
-    //    }
-    //}
-
+    
     public void Fire()
     {
         Manager.instance.MuzzlePaticleOn();
@@ -33,11 +21,5 @@ public class GunControl : MonoBehaviour
     }
 
 
-    //IEnumerator Wait()
-    //{
-    //    yield return new WaitForSeconds(0.5f);
-    //    check = true;
-
-    //}
-
+   
 }

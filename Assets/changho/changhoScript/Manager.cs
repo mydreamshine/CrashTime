@@ -31,7 +31,8 @@ public class Manager : MonoBehaviour
     
     void Start()
     {
-        muzzleEffect =Instantiate(muzzleEffect_prefab, paticlePos.transform.position, paticlePos.transform.rotation);
+        muzzleEffect =Instantiate(muzzleEffect_prefab);
+        muzzleEffect.transform.SetParent(paticlePos.transform);
         hitEffect = Instantiate(hitEffect_prefab);
     }
 

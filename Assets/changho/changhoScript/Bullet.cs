@@ -60,10 +60,21 @@ public class Bullet : MonoBehaviour
 
         if (other.gameObject.tag == "gun")
         {
+           
+            return;
+        }
+        else if(other.gameObject.tag == "Player")
+        {
+          
+            return;
+        }
+        else if(other.gameObject.tag == "bullet")
+        {
             return;
         }
         else
         {
+           
             particleManager.HitParticleOn(transform);
             bullet_rigid.velocity = new Vector3(0, 0, 0);
             bullet_trail.Clear();
