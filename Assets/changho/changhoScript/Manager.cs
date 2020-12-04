@@ -47,7 +47,6 @@ public class Manager : MonoBehaviour
 
     public void HitParticleOn(Transform target)
     {
-        print(target);
         hitEffect.transform.position = target.position;
         hitEffect.transform.rotation = target.rotation;
         

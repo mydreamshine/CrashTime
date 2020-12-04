@@ -28,22 +28,21 @@ namespace Scenes.PlayScenes.UI.Scripts
             for (var i = 0; i < maxHeartCount; i++)
                 heartImageTransforms[i].Rotate(0.0f, i * 45.0f, 0.0f);
 
-            var validHeartCount = maxHeartCount - GameStateManager.Instance.healthPoint;
-            for (var i = 0; i < validHeartCount; i++)
-            {
-                var removeTarget = heartImageTransforms[heartImageTransforms.Count - 1];
-                heartImageTransforms.Remove(removeTarget);
-                removeTarget.gameObject.SetActive(false);
-            }
+            RefreshHeart();
         }
 
         private void Update()
         {
             foreach (var trans in heartImageTransforms)
                 trans.Rotate(0.0f, 100.0f * Time.deltaTime, 0.0f);
-            
-            var validHeartCount = maxHeartCount - GameStateManager.Instance.healthPoint;
-            for (var i = 0; i < validHeartCount; i++)
+
+            RefreshHeart();
+        }
+
+        private void RefreshHeart()
+        {
+            var unValidHeartCount = maxHeartCount - GameStateManager.Instance.healthPoint;
+            for (var i = 0; i < unValidHeartCount; i++)
             {
                 var removeTarget = heartImageTransforms[heartImageTransforms.Count - 1];
                 heartImageTransforms.Remove(removeTarget);
@@ -52,5 +51,6 @@ namespace Scenes.PlayScenes.UI.Scripts
                 maxHeartCount--;
             }
         }
+        
     }
 }

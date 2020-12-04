@@ -8,6 +8,10 @@ namespace Scenes.SharedDataEachScenes.Prefabs.Scripts
     {
         private Canvas parentCanvas;
         [SerializeField] private MixLevels mixLevels;
+        private GameObject optionPanel;
+
+        public bool openToggle;
+        
         private void Awake()
         {
             EventManager.On("game_pause", OnGamePause);
@@ -18,22 +22,37 @@ namespace Scenes.SharedDataEachScenes.Prefabs.Scripts
 
         public void OpenOptionPanel(object obj)
         {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            ObjectPoolManager.Instance.Spawn("option_panel", parent: parentCanvas.transform);
+            optionPanel = ObjectPoolManager.Instance.Spawn("option_panel", parent: parentCanvas.transform);
         }
 
         private void OnGamePause(object obj)
         {
-            mixLevels.paused.TransitionTo(0.01f);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            if (mixLevels == null)
+                mixLevels = FindObjectOfType<MixLevels>();
+            if (mixLevels != null)
+                mixLevels.paused.TransitionTo(0.01f);
         }
 
         public void OnOpenOptionPanel()
         {
             if (GameManager.Instance.State == State.Paused) return;
-            GameManager.Instance.SetState(State.Paused);
             EventManager.Emit("game_pause");
             EventManager.Emit("open_option_panel");
+            GameManager.Instance.SetState(State.Paused);
+            openToggle = true;
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) && !openToggle)
+            {
+                if (optionPanel == null)
+                    OnOpenOptionPanel();
+                else if (!optionPanel.activeInHierarchy)
+                    OnOpenOptionPanel();
+            }
         }
     }
 }

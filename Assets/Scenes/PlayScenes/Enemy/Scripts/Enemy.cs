@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Functions.DestroyObjectSolution.Scripts;
 using Scenes.SharedDataEachScenes;
 using UnityEngine;
@@ -106,7 +107,7 @@ namespace Scenes.PlayScenes.Enemy.Scripts
             if (distanceToTarget <= hitPlayerDistanceOffset)
             {
                 // target.Damage(stat.AttackPower);
-                Debug.Log("Attack!");
+                //Debug.Log("Attack!");
                 GameStateManager.Instance.AddHealth(-(int)stat.AttackPower);
             }
         }
@@ -124,10 +125,10 @@ namespace Scenes.PlayScenes.Enemy.Scripts
         private void Update()
         {
             // destroy test
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                state = EnemyState.Dead;
-            }
+            // if (Input.GetKeyDown(KeyCode.B))
+            // {
+            //     state = EnemyState.Dead;
+            // }
         }
 
         #region FSM
@@ -144,7 +145,7 @@ namespace Scenes.PlayScenes.Enemy.Scripts
                     else if (state == EnemyState.Finding) Find();
                     else if (state == EnemyState.Chasing) Chasing();
                     else if (state == EnemyState.Attacking) Attack();
-
+                    
                     Debug.DrawLine(thisPosition, thisPosition + thisForward * sightLength, Color.red);
 
                     yield return null;
@@ -163,7 +164,7 @@ namespace Scenes.PlayScenes.Enemy.Scripts
 
         private void Attack()
         {
-            if (CheckExistTargetInView())
+            if (CheckExistTargetInView() && (distanceToTarget <= hitPlayerDistanceOffset))
             {
                 //transform.rotation = Quaternion.LookRotation(directionToTarget);
                 if (target != null)
@@ -227,6 +228,15 @@ namespace Scenes.PlayScenes.Enemy.Scripts
         {
             stat.AddHp(-damageAmount);
             if (stat.Hp <= 0) state = EnemyState.Dead;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("bullet"))
+            {
+                var damageAmount = other.gameObject.GetComponent<Bullet>().damagePower;
+                Damage(damageAmount);
+            }
         }
 
         #endregion

@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 using changhoScript;
+using KPU;
+using KPU.Manager;
+
 public class GunControl : MonoBehaviour
 {
     [SerializeField]
@@ -18,8 +21,12 @@ public class GunControl : MonoBehaviour
         if (Input.GetMouseButtonDown(0)&&check)
         {
             check = false;
-            Manager.instance.MuzzlePaticleOn();
-            Fire(); 
+            if (GameManager.Instance.State == State.Playing)
+            {
+                Manager.instance.MuzzlePaticleOn();
+                Fire();
+            }
+
             StartCoroutine(Wait());
         }
     }

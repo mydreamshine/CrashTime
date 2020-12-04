@@ -12,7 +12,6 @@ namespace Scenes.SharedDataEachScenes.Prefabs.Scripts
         }
         public void OnValueChanged(float value)
         {
-            print(value);
             mixLevels.masterMixer.SetFloat("bgmVol", value);
         }
     }

@@ -12,7 +12,7 @@ public class PlayerMoveController : MonoBehaviour, PlayerInputAction.IFpsActions
     private PlayerInputAction _inputAction;
     private Vector2 _moveActionValue;
 
-    [SerializeField] private float characterMoveSpeed = 10.0f;
+    [SerializeField] public float characterMoveSpeed = 10.0f;
 
     [SerializeField] private AudioSource walkSound;
 

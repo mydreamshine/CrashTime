@@ -1,21 +1,27 @@
 ﻿
 using UnityEngine;
 using changhoScript;
+using KPU.Time;
+
 public class Bullet : MonoBehaviour
 {
-    private float bulletLife;
-    private BulletObjectPool bullet;
+    private float bulletLifeTimeStack;
+    private BulletObjectPool bulletPool;
     private TrailRenderer bullet_trail;
     private Rigidbody bullet_rigid;
+
+    [SerializeField] [Range(1, 3)] public int damagePower = 1; 
+    
+    [SerializeField] [Range(0.0f, 5.0f)] private float bulletMaxLifeTime = 10.0f; 
 
     [SerializeField] private Manager particleManager = null;
 
     private void OnEnable()
     {
-        bullet = gameObject.GetComponentInParent<BulletObjectPool>();
+        bulletPool = FindObjectOfType<BulletObjectPool>();
         bullet_trail = gameObject.GetComponent<TrailRenderer>();
         bullet_rigid = gameObject.GetComponent<Rigidbody>();
-        bulletLife = 2f;
+        bulletLifeTimeStack = bulletMaxLifeTime;
         if (null == particleManager)
         {
             particleManager = GameObject.Find("ParticleManager").GetComponent<Manager>();
@@ -26,20 +32,17 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        bulletLife -= Time.deltaTime;
-     
+        bulletLifeTimeStack -= Time.deltaTime;
 
-        if (bulletLife < 0)
+        if (bulletLifeTimeStack < 0)
         {
-            bulletLife = 2f;
+            bulletLifeTimeStack = bulletMaxLifeTime;
             
             bullet_rigid.velocity = new Vector3(0, 0, 0);
             bullet_trail.Clear();
-            bullet.ReturnObject(gameObject);
+            bulletPool.ReturnObject(gameObject);
 
         }
-
-
     }
 
     
@@ -49,8 +52,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-        if (other.gameObject.tag == "gun")
+        if (other.gameObject.CompareTag("gun"))
         {
             return;
         }
@@ -59,7 +61,7 @@ public class Bullet : MonoBehaviour
             particleManager.HitParticleOn(transform);
             bullet_rigid.velocity = new Vector3(0, 0, 0);
             bullet_trail.Clear();
-            bullet.ReturnObject(gameObject);
+            bulletPool.ReturnObject(gameObject);
         }
     }
 }

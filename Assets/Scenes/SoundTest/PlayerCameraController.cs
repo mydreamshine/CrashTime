@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using KPU;
+using KPU.Manager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -40,6 +42,8 @@ public class PlayerCameraController : MonoBehaviour,PlayerInputAction.IFpsCamera
     }
     void Update()
     {
+        if (GameManager.Instance.State == State.Paused) return;
+        
         var horizontalDirection = 
             _mouseDeltaVector.x * Time.deltaTime * mouseSensitivity;
         transform.Rotate(0,horizontalDirection,0);

@@ -234,6 +234,8 @@ namespace Functions.DestroyObjectSolution.Scripts
                 if (meshDisappear == null) gameObject.AddComponent<MeshDisappear>();
                 meshDisappear.renderer = gameObject.GetComponent<MeshRenderer>();
                 meshDisappear.rigidbody = gameObject.GetComponent<Rigidbody>();
+                meshDisappear.rigidbody.useGravity = true;
+                meshDisappear.rigidbody.isKinematic = false;
 
                 meshDisappear.rigidBodyFullActionScale = simulateFactor;
             }

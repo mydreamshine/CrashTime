@@ -974,6 +974,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2473531272660884434, guid: 433cbfb0330b164459b9c1a6119bb1b4, type: 3}
+      propertyPath: mouseSensitivity
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2473531272660884436, guid: 433cbfb0330b164459b9c1a6119bb1b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5
@@ -1026,9 +1030,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2473531272660884438, guid: 433cbfb0330b164459b9c1a6119bb1b4, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2473531273320283617, guid: 433cbfb0330b164459b9c1a6119bb1b4, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4214129661039978032, guid: 433cbfb0330b164459b9c1a6119bb1b4, type: 3}
+      propertyPath: BulletSpeed
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 433cbfb0330b164459b9c1a6119bb1b4, type: 3}
@@ -2565,6 +2577,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1033371911}
     m_Modifications:
+    - target: {fileID: 207234991, guid: 20a14166dcc8d964a9c41f88b0813bfa, type: 3}
+      propertyPath: hitPlayerDistanceOffset
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 207234993, guid: 20a14166dcc8d964a9c41f88b0813bfa, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2785285647335403947, guid: 20a14166dcc8d964a9c41f88b0813bfa, type: 3}
       propertyPath: m_Name
       value: White Ninja Variant Variant
@@ -2730,6 +2750,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1929362957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1929362959}
+  - component: {fileID: 1929362958}
+  m_Layer: 0
+  m_Name: SlowMotionController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1929362958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929362957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b40aff05a4d883c44921e3219c730219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSlowMotionFactor: 0.1
+  maxSlowMotionFactor: 1
+--- !u!4 &1929362959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929362957}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2082491320 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2473531272660884438, guid: 433cbfb0330b164459b9c1a6119bb1b4, type: 3}
@@ -2886,6 +2951,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4721550883512365667, guid: 88d3ad992e79e1b46939ebe3288c8b54, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 9211480838460180865, guid: 88d3ad992e79e1b46939ebe3288c8b54, type: 3}
       propertyPath: m_Name
       value: Canvas
