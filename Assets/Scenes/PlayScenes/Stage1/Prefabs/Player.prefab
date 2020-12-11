@@ -350,6 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterMoveSpeed: 10
   walkSound: {fileID: 2473531272025712901}
+  optionsButtonUI: {fileID: 0}
 --- !u!114 &2473531272660884434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,8 +366,6 @@ MonoBehaviour:
   cameraTransform: {fileID: 2473531271754326488}
   mouseSensitivity: 80
   lookingTargetTransform: {fileID: 4214129659560555518}
-  shootSound: {fileID: 2473531273320283647}
-  shootingDelay: 0.5
   rifleTransform: {fileID: 4689212874191009428}
   verticalRecoil: -1
   horizontalRecoil: 1
@@ -546,6 +545,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4214129661039978032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560364835737086370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 768e7e4978ebcde41a3d285183ffa60b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPool: {fileID: 4214129659591728816}
+  bulletSpeed: 100
+  shootDelay: 0.5
+  shootSound: {fileID: 2473531273320283647}
+  checkShootingDelayDone: 0
+  isShooting: 0
 --- !u!1 &4214129659560555519
 GameObject:
   m_ObjectHideFlags: 0
@@ -959,20 +976,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4214129661039978032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2560364835737086370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 768e7e4978ebcde41a3d285183ffa60b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPool: {fileID: 4214129659591728816}
-  BulletSpeed: 10
 --- !u!1001 &4214129661243827653
 PrefabInstance:
   m_ObjectHideFlags: 0

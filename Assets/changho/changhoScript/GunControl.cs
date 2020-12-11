@@ -1,49 +1,101 @@
-﻿using System.Collections;
+﻿using System;
 using UnityEngine;
 using changhoScript;
 using KPU;
 using KPU.Manager;
+using Scenes.PlayScenes.SlowMotionFunc;
+using Scenes.SharedDataEachScenes;
+using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
-public class GunControl : MonoBehaviour
+public class GunControl : MonoBehaviour, PlayerInputAction.IFpsCameraActions
 {
     [SerializeField]
     private BulletObjectPool bulletPool;
 
     [SerializeField]
-    private int BulletSpeed;
+    private int bulletSpeed;
 
-   
+    [SerializeField] public float shootDelay = 0.39f;
+    [SerializeField] private AudioSource shootSound;
+    
+    private SlowMotionController slowMotionController;
+    private float shootingDelayTimeStack;
+    
+    [HideInInspector] public bool checkShootingDelayDone = true;
+    [HideInInspector] public bool isShooting;
+    private bool existRebound;
 
-    bool check = true;
+    private void Awake()
+    {
+        slowMotionController = FindObjectOfType<SlowMotionController>();
+    }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)&&check)
+        // Skinned Mesh Destroy의 Matrix Operating에 의한 deltaTime Delay 일시적 보완
+        if (1 / Time.unscaledDeltaTime < 20.0f) return;
+        
+        // Set Shooting Sound Pitch
+        if (slowMotionController != null)
         {
-            check = false;
-            if (GameManager.Instance.State == State.Playing)
-            {
-                Manager.instance.MuzzlePaticleOn();
-                Fire();
-            }
+            var irregularRangeValue = slowMotionController.SlowScale;
+            var irregularMin = irregularRangeValue - irregularRangeValue * 0.3f;
+            var irregularMax = irregularRangeValue + irregularRangeValue * 0.3f;
+            irregularRangeValue = Random.Range(irregularMin, irregularMax);
+            shootSound.pitch = Mathf.Clamp(irregularRangeValue, 0.1f, 1.0f);
+        }
+        
+        if (Input.GetMouseButtonDown(0) && checkShootingDelayDone)
+        {
+            if (GameManager.Instance.State == State.Playing) Fire();
+        }
 
-            StartCoroutine(Wait());
+        if (!checkShootingDelayDone)
+        {
+            var slowModeDeltaTime = SlowMotionManager.Instance.CurrentSlowSpeed * Time.deltaTime;
+            if (shootingDelayTimeStack >= shootDelay)
+            {
+                isShooting = false;
+                checkShootingDelayDone = true;
+                shootingDelayTimeStack = 0.0f;
+            }
+            else shootingDelayTimeStack += slowModeDeltaTime;
         }
     }
 
     private void Fire()
     {
+        Manager.instance.MuzzlePaticleOn();
+        shootSound.Stop();
+        shootSound.Play();
+        
         var clone = bulletPool.GetObject();
-        clone.GetComponent<Rigidbody>().AddForce(transform.forward * BulletSpeed);
+        clone.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
 
+        isShooting = true;
+        checkShootingDelayDone = false;
+        shootingDelayTimeStack = 0.0f;
     }
 
-
-    IEnumerator Wait()
+    public void IsExistRebound(bool exist)
     {
-        yield return new WaitForSeconds(0.5f);
-        check = true;
-
+        existRebound = exist;
     }
 
+    public void ResetRebound()
+    {
+        if (!existRebound) return;
+        isShooting = false;
+    }
+
+    public void OnAim(InputAction.CallbackContext context)
+    {
+        //throw new NotImplementedException();
+    }
+
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+        isShooting = checkShootingDelayDone ? context.ReadValueAsButton() : isShooting;
+    }
 }

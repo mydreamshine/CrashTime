@@ -967,51 +967,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 475418, guid: 1acd03bc537c24f3484ab4d6f07b9e02, type: 3}
   m_PrefabInstance: {fileID: 175156899}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &209097210
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 209097212}
-  - component: {fileID: 209097211}
-  m_Layer: 0
-  m_Name: SlowMotionController (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &209097211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209097210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b40aff05a4d883c44921e3219c730219, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minSlowMotionFactor: 0.1
-  maxSlowMotionFactor: 1
---- !u!4 &209097212
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209097210}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &226201053
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4761,7 +4716,7 @@ Transform:
   - {fileID: 2078821511}
   - {fileID: 1062795570}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1244326481
 PrefabInstance:
@@ -4966,8 +4921,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b40aff05a4d883c44921e3219c730219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSlowMotionFactor: 0.1
+  minSlowMotionFactor: 0.13
   maxSlowMotionFactor: 1
+  gradualTime: 0.3
 --- !u!4 &1281844980
 Transform:
   m_ObjectHideFlags: 0
@@ -7243,6 +7199,22 @@ PrefabInstance:
       propertyPath: BulletSpeed
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 4214129661039978032, guid: 433cbfb0330b164459b9c1a6119bb1b4, type: 3}
+      propertyPath: shootDelay
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 4214129661039978032, guid: 433cbfb0330b164459b9c1a6119bb1b4, type: 3}
+      propertyPath: bulletSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4214129661039978032, guid: 433cbfb0330b164459b9c1a6119bb1b4, type: 3}
+      propertyPath: bulletPool
+      value: 
+      objectReference: {fileID: 1802295571}
+    - target: {fileID: 4214129661039978032, guid: 433cbfb0330b164459b9c1a6119bb1b4, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 1802295572}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 433cbfb0330b164459b9c1a6119bb1b4, type: 3}
 --- !u!1 &1802295568 stripped
@@ -7267,6 +7239,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc8b265fb70e76d44be1477ab132cbff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1802295571 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4214129659591728816, guid: 433cbfb0330b164459b9c1a6119bb1b4, type: 3}
+  m_PrefabInstance: {fileID: 1802295567}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67a4cc5793f58f40922a2775ea617a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &1802295572 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2473531273320283647, guid: 433cbfb0330b164459b9c1a6119bb1b4, type: 3}
+  m_PrefabInstance: {fileID: 1802295567}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1802299643
 PrefabInstance:
   m_ObjectHideFlags: 0

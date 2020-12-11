@@ -14,6 +14,8 @@ namespace Functions.DestroyObjectSolution.Scripts
         
         [HideInInspector] public MeshRenderer renderer;
         [HideInInspector] public Rigidbody rigidbody;
+
+        private float maxSpeed = 0.0f;
         private float timeStack;
 
         private void OnEnable()

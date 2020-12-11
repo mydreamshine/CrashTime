@@ -9,24 +9,43 @@ namespace Scenes.PlayScenes.UI.Scripts
 {
     public class StageInfoUIs : MonoBehaviour
     {
-        private TMP_Text clearInfoText;
+        private TMP_Text stageClearInfoText;
+        private TMP_Text slowModeInfoText;
         private void Awake()
         {
-            clearInfoText = transform.GetComponentsInChildren<TMP_Text>()
+            stageClearInfoText = transform.GetComponentsInChildren<TMP_Text>()
                 .FirstOrDefault(text => text.gameObject.name.Contains("StageClear"));
-            if (clearInfoText != null) clearInfoText.gameObject.SetActive(false);
+            if (stageClearInfoText != null) stageClearInfoText.gameObject.SetActive(false);
+
+            slowModeInfoText = transform.GetComponentsInChildren<TMP_Text>()
+                .FirstOrDefault(text => text.gameObject.name.Contains("SlowMotionActive"));
+            if (slowModeInfoText != null) slowModeInfoText.gameObject.SetActive(false);
         }
 
         private void Update()
         {
-            if (GameManager.Instance.State != State.GameEnded) return;
-            if (clearInfoText == null) return;
-            if (!clearInfoText.gameObject.activeInHierarchy)
+            var currSlowSpeed = SlowMotionManager.Instance.CurrentSlowSpeed;
+            if (GameManager.Instance.State != State.Paused)
             {
-                clearInfoText.gameObject.SetActive(true);
+                if (currSlowSpeed < 0.99f)
+                {
+                    if (!slowModeInfoText.gameObject.activeInHierarchy) slowModeInfoText.gameObject.SetActive(true);
+                    slowModeInfoText.text = $"Slow Mode\nSlow Speed: {currSlowSpeed:0.000}";
+                }
+                else
+                {
+                    if (slowModeInfoText != null) slowModeInfoText.gameObject.SetActive(false);
+                }
+            }
+
+            if (GameManager.Instance.State != State.GameEnded) return;
+            if (stageClearInfoText == null) return;
+            if (!stageClearInfoText.gameObject.activeInHierarchy)
+            {
+                stageClearInfoText.gameObject.SetActive(true);
                 if (GameStateManager.Instance.healthPoint == 0)
                 {
-                    clearInfoText.text = "Game Over";
+                    stageClearInfoText.text = "Game Over";
                 }
             }
         }

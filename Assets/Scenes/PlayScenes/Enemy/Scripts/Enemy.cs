@@ -31,6 +31,10 @@ namespace Scenes.PlayScenes.Enemy.Scripts
         private Vector3 directionToTarget;
         private float distanceToTarget;
         private bool notMoveEventsDone = true;
+
+        private float maxSpeed = 3.5f;
+        private float savedSpeed;
+        private float locomotionSpeedParam;
         
         public float Hp => stat.Hp;
         public float MaxHp => stat.MaxHp;
@@ -61,6 +65,8 @@ namespace Scenes.PlayScenes.Enemy.Scripts
                 if (targetComp != null) target = targetComp.transform;
             }
             notMoveEventsDone = true;
+            
+            enemyActionController = GetComponentInChildren<EnemyActionController>();
 
             lifeRoutine = StartCoroutine(LifeRoutine());
         }
@@ -84,6 +90,25 @@ namespace Scenes.PlayScenes.Enemy.Scripts
             var targetPosition = target.position;
             directionToTarget = (targetPosition - thisPosition).normalized;
             distanceToTarget = (targetPosition - thisPosition).magnitude;
+        }
+
+        private void UpdateSpeedBySlowMode()
+        {
+            var currSlowSpeed = SlowMotionManager.Instance.CurrentSlowSpeed;
+            if (currSlowSpeed < 0.9f)
+            {
+                if (savedSpeed - 0.0f < Mathf.Epsilon) savedSpeed = agent.speed;
+                //locomotionSpeedParam = savedSpeed;
+                agent.speed = currSlowSpeed * savedSpeed;
+            }
+            else
+            {
+                agent.speed = maxSpeed;
+                locomotionSpeedParam = agent.velocity.magnitude;
+                savedSpeed = 0.0f;
+            }
+
+            enemyActionController.SetPlaySpeed(currSlowSpeed);
         }
 
         private bool CheckExistTargetInView()
@@ -121,15 +146,7 @@ namespace Scenes.PlayScenes.Enemy.Scripts
             meshDestroy.DestroyMesh(Vector3.zero, Vector3.zero, simulateFactor);
             //gameObject.SetActive(false);
         }
-
-        private void Update()
-        {
-            // destroy test
-            // if (Input.GetKeyDown(KeyCode.B))
-            // {
-            //     state = EnemyState.Dead;
-            // }
-        }
+        
 
         #region FSM
 
@@ -139,6 +156,7 @@ namespace Scenes.PlayScenes.Enemy.Scripts
             {
                 while (state != EnemyState.Dead)
                 {
+                    UpdateSpeedBySlowMode();
                     UpdateToTargetRelData();
 
                     if (state == EnemyState.Idle) Idle();
@@ -203,12 +221,12 @@ namespace Scenes.PlayScenes.Enemy.Scripts
             }
             else state = EnemyState.Idle;
 
-            enemyActionController.SetBasicLocomotionParam(agent.velocity.magnitude);
+            enemyActionController.SetBasicLocomotionParam(locomotionSpeedParam);
         }
 
         private void Find()
         {
-            enemyActionController.SetBasicLocomotionParam(agent.velocity.magnitude);
+            enemyActionController.SetBasicLocomotionParam(locomotionSpeedParam);
             
             if (CheckExistTargetInView())
                 state = EnemyState.Chasing;

@@ -157,4 +157,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPool: {fileID: 0}
-  BulletSpeed: 40
+  bulletSpeed: 100
+  shootDelay: 0.5
+  shootSound: {fileID: 0}
+  checkShootingDelayDone: 0
+  isShooting: 0

@@ -11,6 +11,9 @@ namespace KPU.Time
 
         private void Update()
         {
+            // Scene Change Loading에 의한 deltaTime Delay 일시적 보완
+            if (1 / UnityEngine.Time.unscaledDeltaTime < 10.0f) return;
+            
             if (_timerActive)
                 _time += UnityEngine.Time.unscaledDeltaTime;
         }

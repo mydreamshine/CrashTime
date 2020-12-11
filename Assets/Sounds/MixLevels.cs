@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
@@ -40,9 +36,25 @@ public class MixLevels : MonoBehaviour
         masterMixer.SetFloat("bgmVol", bgmLvl);
     }
 
-    public void ClearVolume()
+    public float GetSfxLvl()
+    {
+        masterMixer.GetFloat("sfxVol", out var value);
+        return value;
+    }
+    
+    public float GetBgmLvl()
+    {
+        masterMixer.GetFloat("bgmVol", out var value);
+        return value;
+    }
+
+    public void ClearBgmVolume()
     {
         masterMixer.ClearFloat("bgmVol");
+    }
+    public void ClearSfxVolume()
+    {
+        masterMixer.ClearFloat("sfxVol");
     }
 
     public void SetTimeScale(float value)
